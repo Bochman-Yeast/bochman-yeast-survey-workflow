@@ -100,6 +100,10 @@ attempting this:
    cannot be run as-is — a future user needing to regenerate `combined_alignment.fasta` from
    scratch must first reconstruct `panel_genotypes_subset.tsv` from the cited panel deposits.
 
+Estimated size of `panel_genotypes_subset.tsv` if regenerated: ~580–615 MB (3,034 panel
+samples × 50,437 candidate sites, ~3–4 bytes per genotype field), roughly 4–5× larger than
+`combined_alignment.fasta` itself — hence also excluded here.
+
 For any *other* file that turns out to exceed 100 MB in the future (none currently do besides
 this one; the next-largest tracked file is the ~22.7 MB `YH156_vs_sv.delta`), use
 [Git LFS](https://git-lfs.github.com/) rather than repeating this exclude-and-upload-to-Zenodo
