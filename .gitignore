@@ -15,3 +15,8 @@ __pycache__/
 
 # Logs and scratch output that shouldn't be tracked if regenerated later
 *.log.tmp
+
+# Exceeds GitHub's 100 MB per-file push limit (~135 MB) -- kept on disk locally,
+# uploaded directly to the Zenodo deposit as a supplementary file at release time
+# instead of being tracked in git. See RELEASING.md for details and regeneration steps.
+saccharomyces_placement/placement/combined_alignment.fasta

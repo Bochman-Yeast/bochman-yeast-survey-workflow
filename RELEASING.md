@@ -65,22 +65,42 @@ Once Zenodo has minted the DOI:
 Once the DOI exists, Zenodo provides a Markdown badge snippet on the record's page —
 straightforward to add near the top of `README.md` if wanted.
 
-## A note specific to this repository (size) — ACTION REQUIRED before pushing
+## A note specific to this repository (size) — ACTION REQUIRED at release time
 
 This repository is roughly 252 MiB, dominated by `saccharomyces_placement/` (~150 MB, mostly
 `placement/combined_alignment.fasta` and per-isolate VCFs) and `yh156_assembly_and_synteny/`
 (~101 MB, mostly the reference genome, draft assembly, and SyRI/synteny intermediates).
 
 **`saccharomyces_placement/placement/combined_alignment.fasta` is ~135.4 MB (141,965,313
-bytes) — this exceeds GitHub's 100 MB hard per-file limit and will be rejected on a plain
-`git push`.** Before pushing to GitHub, either:
-- Use [Git LFS](https://git-lfs.github.com/) for this file (and any other file that turns out
-  to be >100 MB — none of the others currently are; the next-largest is the ~22.7 MB
-  `YH156_vs_sv.delta`), or
-- Exclude it from the pushed repository and note in `saccharomyces_placement/README.md` where
-  it can be regenerated/obtained instead (it may be regenerable from the scripts in
-  `saccharomyces_placement/placement/scripts/` plus the panel's public Zenodo deposits already
-  cited in that package's README).
+bytes) — this exceeds GitHub's 100 MB hard per-file limit.** Resolution: this file is
+**excluded from git** (see `.gitignore`) rather than pushed via Git LFS. It remains present
+on disk locally and is **not deleted** — nothing currently regenerates it automatically (see
+below), so removing the only copy would be destructive.
 
-Do not `git add` this file until one of the above is decided — a large blob committed to
-history is expensive to remove later even after switching to LFS.
+**At release time, this file must be uploaded directly to the Zenodo deposit as a
+supplementary file**, alongside (not instead of) the GitHub-archived repository that Zenodo
+creates automatically from the tagged release (Section 4 above). Zenodo deposits accept
+additional files beyond what's in the archived GitHub snapshot — add it there manually before
+finalizing the deposit, and reference it from `saccharomyces_placement/README.md` /
+the top-level `README.md` once done (e.g. "combined_alignment.fasta is included in the Zenodo
+deposit as a supplementary file, not in the GitHub-tracked repository").
+
+**Regenerating this file instead of relying on the uploaded copy:** it is produced by
+`saccharomyces_placement/placement/scripts/build_alignment.py`. Two caveats for a future user
+attempting this:
+1. The script hardcodes an absolute Quartz path (`PROJ =
+   "/N/scratch/bochman/yeast_id/scerevisiae_popgen"`) rather than a relative path — it will
+   need editing to point at wherever this repository actually lives before it can run.
+2. It reads three inputs from `placement/`: `panel_sample_names.txt` and
+   `newsamples_matrix.tsv` (both present in this repository) plus
+   **`panel_genotypes_subset.tsv`, which is NOT included in this deposit** — it falls under
+   the "large intermediate files... excluded" note in `saccharomyces_placement/README.md`
+   (regenerable from the panel's own public Zenodo deposits, `10.5281/zenodo.12580561` /
+   `10.5281/zenodo.12571280`, plus this repository's scripts). Without that file, the script
+   cannot be run as-is — a future user needing to regenerate `combined_alignment.fasta` from
+   scratch must first reconstruct `panel_genotypes_subset.tsv` from the cited panel deposits.
+
+For any *other* file that turns out to exceed 100 MB in the future (none currently do besides
+this one; the next-largest tracked file is the ~22.7 MB `YH156_vs_sv.delta`), use
+[Git LFS](https://git-lfs.github.com/) rather than repeating this exclude-and-upload-to-Zenodo
+approach, to keep the git history itself usable for cloning.
