@@ -61,10 +61,6 @@ individual packages, to leave each package's internals as originally validated):
   of the broader Quartz working environment). Creating both on the same machine with their
   declared names will collide — rename one (e.g. `conda env create -f environment.yml -n
   yeast-id-placement`) if you need both installed simultaneously.
-- `saccharomyces_placement/environment.yml` also declares a `fiddl` pip dependency that is
-  not actually imported by any script in that package — it is a byproduct of being a full
-  environment export rather than a scoped one, not a real dependency of this repository's
-  own code.
 - `lachancea_placement/environment.yml` is entirely commented out (documentation of the two
   conda environments used — `yeast-id` and `popgen` — rather than a runnable spec). Running
   `conda env create -f environment.yml` on it as-is will create an empty environment; consult
