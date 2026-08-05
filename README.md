@@ -76,7 +76,7 @@ was assembled. The actual location is this repository's `species_id_and_binning/
 ## Citation
 
 - Manuscript: `[CALL-OUT: Paper 2's actual manuscript title, authors, journal, year, DOI once available]`
-- This repository's own DOI: `[CALL-OUT: Zenodo DOI, minted at first GitHub release -- see RELEASING.md]`
+- This repository's own DOI: `10.5281/zenodo.21811551`
 
 See `CITATION.cff` for the full machine-readable citation record, including the caveats
 above on the FIDDL reference's currently-unresolved URL and DOI.

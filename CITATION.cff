@@ -2,13 +2,13 @@ cff-version: 1.2.0
 message: "If you use this software, please cite both the repository (below) and the manuscript it accompanies."
 title: "[CALL-OUT: this repository's own name, e.g. 'Bioinformatic workflow for <Paper 2 survey title>']"
 version: 1.0.0
-date-released: "[CALL-OUT: date of first release]"
+date-released: "2026-08-05"
 authors:
   - family-names: "Bochman"
     given-names: "Matthew L."
     orcid: "https://orcid.org/0000-0002-2807-0452"
     affiliation: "Molecular & Cellular Biochemistry Department, Indiana University"
-doi: "[CALL-OUT: Zenodo DOI, minted at first GitHub release -- see RELEASING.md]"
+doi: "10.5281/zenodo.21811551"
 repository-code: "[CALL-OUT: this repository's own GitHub URL]"
 license: MIT
 keywords:
