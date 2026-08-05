@@ -3,7 +3,7 @@
 Package B (Paper 2, Areas 3-assembly and 4): the reassembly/polishing half of the YH156
 species-correction narrative, plus the whole-genome structural comparison against the
 *Schizosaccharomyces versatilis* CBS 103 type strain. The ANI-verification half of the
-species correction is packaged separately (`packaging_A_species_id_and_binning.md`).
+species correction is packaged separately (`../species_id_and_binning/`).
 
 ## Narrative
 
