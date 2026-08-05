@@ -1,0 +1,3 @@
+#file	name	tags
+/N/scratch/bochman/yeast_id/refs/Schizosaccharomyces_versatilis/genome.fna	S_versatilis_CBS103	lw:1.5
+YH156_pseudochroms_sv.fasta	YH156	lw:1.5

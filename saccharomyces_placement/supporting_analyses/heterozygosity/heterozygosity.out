@@ -1,0 +1,28 @@
+=== Panel-wide heterozygosity by SuperClade ===
+                        count      mean    median       std
+SuperClade                                                 
+S1. Wine                 1247  0.000371  0.000141  0.000501
+S2. Beer                  310  0.003666  0.003415  0.001246
+S3. Asian Fermentation    305  0.000929  0.000536  0.001026
+S4. Wild                  343  0.000052  0.000012  0.000351
+
+=== Panel-wide Zygosity counts ===
+Zygosity
+Heterozygous    1756
+Homozygous      1278
+
+=== Panel-wide Ploidy counts ===
+Ploidy
+2    1765
+?     648
+3     245
+4     238
+1     133
+5       5
+
+=== Our isolates ===
+YH123: total_variants=85903  het=4336  hom_alt=81567  HeterozygosityRate=0.000359  (het/total_variant_ratio=0.050)
+YH166: total_variants=102907  het=62975  hom_alt=39932  HeterozygosityRate=0.005217  (het/total_variant_ratio=0.612)
+YH196: total_variants=111000  het=4054  hom_alt=106946  HeterozygosityRate=0.000336  (het/total_variant_ratio=0.037)
+YH229: total_variants=67194  het=8797  hom_alt=58397  HeterozygosityRate=0.000729  (het/total_variant_ratio=0.131)
+DoF1: total_variants=86288  het=4571  hom_alt=81717  HeterozygosityRate=0.000379  (het/total_variant_ratio=0.053)

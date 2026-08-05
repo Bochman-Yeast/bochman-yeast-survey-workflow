@@ -1,0 +1,29 @@
+
+Level -2: 1 other tip(s), support=0.838
+  Clade breakdown: [(nan, 1)]
+  SuperClade breakdown: [(nan, 1)]
+
+Level -3: 3 other tip(s), support=0.846
+  Clade breakdown: [(nan, 3)]
+  SuperClade breakdown: [(nan, 3)]
+
+Level -4: 10 other tip(s), support=0.888
+  Clade breakdown: [(nan, 10)]
+  SuperClade breakdown: [(nan, 10)]
+
+Level -5: 12 other tip(s), support=0.0
+  Clade breakdown: [(nan, 12)]
+  SuperClade breakdown: [(nan, 12)]
+
+Level -6: 330 other tip(s), support=0.247
+  Clade breakdown: [('28. Baiju', 109), ('30. Mantou', 70), ('29. Sake', 60), ('31. Huangjiu', 56), (nan, 35)]
+  SuperClade breakdown: [('S3. Asian Fermentation', 305), (nan, 25)]
+
+Level -7: 383 other tip(s), support=0.996
+  Clade breakdown: [('28. Baiju', 109), (nan, 88), ('30. Mantou', 70), ('29. Sake', 60), ('31. Huangjiu', 56)]
+  SuperClade breakdown: [('S3. Asian Fermentation', 305), (nan, 78)]
+
+=== Origin info for immediate/near neighbors ===
+  XTRA_EFV: Clade=nan, SuperClade=nan, GeographicOrigin=China:Korla, Xinjiang, EcoOrigin=Apple, orchard, Country=China, Zygosity=Heterozygous, Ploidy=2
+  BIE: Clade=nan, SuperClade=nan, GeographicOrigin=San Severo_Puglia_Italy, EcoOrigin=Wine, Country=Italy, Zygosity=Heterozygous, Ploidy=2
+  BPA: Clade=nan, SuperClade=nan, GeographicOrigin=Viik_Helsinki_Finland, EcoOrigin=Soil, Country=Finland, Zygosity=Heterozygous, Ploidy=2

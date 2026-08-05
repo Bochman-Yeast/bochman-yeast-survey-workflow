@@ -1,0 +1,43 @@
+CP130698.1: 94 contigs, 7531136 bp
+CP130697.1: 49 contigs, 4866282 bp
+CP130699.1: 70 contigs, 4694667 bp
+
+Placed 213 of 213 contigs into 3 pseudo-chromosomes
+Unplaced (0): []
+
+Reoriented 125 of 213 placed contigs to match reference strand
+file                         format  type  num_seqs     sum_len    min_len      avg_len    max_len           Q1         Q2         Q3  sum_gap        N50  N50_num  Q20(%)  Q30(%)  AvgQual  GC(%)   sum_n
+YH156_pseudochroms_sv.fasta  FASTA   DNA          3  17,092,085  4,694,667  5,697,361.7  7,531,136  4,780,474.5  4,866,282  6,198,709        0  4,866,282        2       0       0        0  43.13  21,000
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+           ^^^^^^^^^^^^^^^^
+  File "syri/pyxFiles/synsearchFunctions.pyx", line 534, in syri.synsearchFunctions.syri
+  File "<stringsource>", line 664, in View.MemoryView.memoryview_cwrapper
+  File "<stringsource>", line 352, in View.MemoryView.memoryview.__cinit__
+ValueError: buffer source array is read-only
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/N/scratch/bochman/conda_envs/synteny/bin/syri", line 11, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/site-packages/syri/scripts/syri.py", line 328, in main
+    syri(args)
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/site-packages/syri/scripts/syri.py", line 215, in syri
+    startSyri(args, coords[["aStart", "aEnd", "bStart", "bEnd", "aLen", "bLen", "iden", "aDir", "bDir", "aChr", "bChr"]])
+  File "syri/pyxFiles/synsearchFunctions.pyx", line 509, in syri.synsearchFunctions.startSyri
+  File "syri/pyxFiles/synsearchFunctions.pyx", line 510, in syri.synsearchFunctions.startSyri
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/multiprocessing/pool.py", line 774, in get
+    raise self._value
+ValueError: buffer source array is read-only

@@ -1,0 +1,45 @@
+2026-07-13 11:27:54,871 - Reading Coords - INFO - syri:134 - Reading input from .tsv file
+2026-07-13 11:27:56,168 - Reading Coords - INFO - syri:134 - Filtering low-quality alignments (alignment quality < 90, alignment length < 100)
+2026-07-13 11:27:57,618 - syri - INFO - syri:215 - starting
+2026-07-13 11:27:57,619 - syri - INFO - syri:215 - Analysing chromosomes: ['CP130697.1', 'CP130698.1', 'CP130699.1']
+2026-07-13 11:27:57,804 - syri.CP130697.1 - INFO - mapstar:48 - CP130697.1 (379, 11)
+2026-07-13 11:27:57,804 - syri.CP130698.1 - INFO - mapstar:48 - CP130698.1 (864, 11)
+2026-07-13 11:27:57,804 - syri.CP130697.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130697.1
+2026-07-13 11:27:57,804 - syri.CP130698.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130698.1
+2026-07-13 11:27:57,805 - syri.CP130699.1 - INFO - mapstar:48 - CP130699.1 (410, 11)
+2026-07-13 11:27:57,805 - syri.CP130699.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130699.1
+2026-07-13 11:38:05,532 - Reading Coords - INFO - syri:134 - Reading input from .tsv file
+2026-07-13 11:38:06,236 - Reading Coords - INFO - syri:134 - Filtering low-quality alignments (alignment quality < 90, alignment length < 100)
+2026-07-13 11:38:07,422 - syri - INFO - syri:215 - starting
+2026-07-13 11:38:07,424 - syri - INFO - syri:215 - Analysing chromosomes: ['CP130697.1', 'CP130698.1', 'CP130699.1']
+2026-07-13 11:38:07,543 - syri.CP130698.1 - INFO - mapstar:48 - CP130698.1 (864, 11)
+2026-07-13 11:38:07,543 - syri.CP130699.1 - INFO - mapstar:48 - CP130699.1 (410, 11)
+2026-07-13 11:38:07,543 - syri.CP130697.1 - INFO - mapstar:48 - CP130697.1 (379, 11)
+2026-07-13 11:38:07,544 - syri.CP130698.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130698.1
+2026-07-13 11:38:07,544 - syri.CP130699.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130699.1
+2026-07-13 11:38:07,544 - syri.CP130697.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130697.1
+2026-07-13 11:45:18,253 - Reading Coords - INFO - syri:134 - Reading input from .tsv file
+2026-07-13 11:45:18,274 - Reading Coords - INFO - syri:134 - Filtering low-quality alignments (alignment quality < 90, alignment length < 100)
+2026-07-13 11:45:18,406 - syri - INFO - syri:215 - starting
+2026-07-13 11:45:18,407 - syri - INFO - syri:215 - Analysing chromosomes: ['CP130697.1', 'CP130698.1', 'CP130699.1']
+2026-07-13 11:45:18,426 - syri.CP130697.1 - INFO - mapstar:48 - CP130697.1 (379, 11)
+2026-07-13 11:45:18,426 - syri.CP130697.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130697.1
+2026-07-13 11:45:18,426 - syri.CP130698.1 - INFO - mapstar:48 - CP130698.1 (864, 11)
+2026-07-13 11:45:18,426 - syri.CP130698.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130698.1
+2026-07-13 11:45:18,427 - syri.CP130699.1 - INFO - mapstar:48 - CP130699.1 (410, 11)
+2026-07-13 11:45:18,427 - syri.CP130699.1 - INFO - mapstar:48 - Identifying Synteny for chromosome CP130699.1
+2026-07-13 11:45:18,491 - syri.CP130699.1 - INFO - mapstar:48 - Identifying Inversions for chromosome CP130699.1
+2026-07-13 11:45:18,491 - syri.CP130697.1 - INFO - mapstar:48 - Identifying Inversions for chromosome CP130697.1
+2026-07-13 11:45:18,582 - syri.CP130698.1 - INFO - mapstar:48 - Identifying Inversions for chromosome CP130698.1
+2026-07-13 11:45:30,803 - syri.CP130699.1 - INFO - mapstar:48 - Identifying translocation and duplication for chromosome CP130699.1
+2026-07-13 11:45:30,861 - syri.CP130697.1 - INFO - mapstar:48 - Identifying translocation and duplication for chromosome CP130697.1
+2026-07-13 11:45:30,891 - syri.CP130698.1 - INFO - mapstar:48 - Identifying translocation and duplication for chromosome CP130698.1
+2026-07-13 11:45:33,239 - getCTX - INFO - syri:215 - Identifying cross-chromosomal translocation and duplication for chromosome2026-07-13 11:45:33.239375
+2026-07-13 11:45:33,867 - Brute-force TD identification - INFO - mapstar:48 - Cluster is too big for Brute Force, using randomized-greedy approach
+Time taken for last iteration 4.76837158203125e-07. iterations remaining 46
+2026-07-13 11:45:37,967 - local_variation - INFO - syri:226 - Finding SVs in synOut.txt, invOut.txt, TLOut.txt, invTLOut.txt, ctxOut.txt
+2026-07-13 11:45:39,447 - local_variation - INFO - syri:246 - Finding SNPs and small indels
+2026-07-13 11:45:41,530 - local_variation - INFO - syri:258 - Combining outputs
+2026-07-13 11:45:41,639 - local_variation - INFO - syri:263 - Generating table output
+2026-07-13 11:45:46,227 - local_variation - INFO - syri:268 - Generating VCF
+2026-07-13 11:45:46,601 - local_variation - INFO - syri:276 - Finished syri

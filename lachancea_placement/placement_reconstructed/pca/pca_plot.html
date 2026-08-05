@@ -1,0 +1,519 @@
+<title>PCA: L. thermotolerans population structure</title>
+<style>
+  :root {
+    --surface:       #fcfcfb;
+    --page:          #f9f9f7;
+    --ink:           #0b0b0b;
+    --ink-2:         #52514e;
+    --muted:         #898781;
+    --grid:          #e1e0d9;
+    --axis:          #c3c2b7;
+    --border:        rgba(11,11,11,0.10);
+    --box-fill:      rgba(11,11,11,0.03);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      --surface:     #1a1a19;
+      --page:        #0d0d0d;
+      --ink:         #ffffff;
+      --ink-2:       #c3c2b7;
+      --muted:       #898781;
+      --grid:        #2c2c2a;
+      --axis:        #383835;
+      --border:      rgba(255,255,255,0.10);
+      --box-fill:    rgba(255,255,255,0.04);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface:     #1a1a19;
+    --page:        #0d0d0d;
+    --ink:         #ffffff;
+    --ink-2:       #c3c2b7;
+    --muted:       #898781;
+    --grid:        #2c2c2a;
+    --axis:        #383835;
+    --border:      rgba(255,255,255,0.10);
+    --box-fill:    rgba(255,255,255,0.04);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  header h1 {
+    font-size: 1.5rem;
+    font-weight: 650;
+    margin: 0 0 6px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  header p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    max-width: 68ch;
+    line-height: 1.5;
+  }
+  .figure {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  .panels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .panel {
+    flex: 1 1 420px;
+    min-width: 0;
+  }
+  .panel-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 8px;
+  }
+  .panel svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .axis-label {
+    fill: var(--muted);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+  .axis-title {
+    fill: var(--ink-2);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .grid-line { stroke: var(--grid); stroke-width: 1; }
+  .axis-line { stroke: var(--axis); stroke-width: 1; }
+  .zoom-box { fill: var(--box-fill); stroke: var(--axis); stroke-width: 1; stroke-dasharray: 3 3; }
+  marker path { fill-opacity: 0.92; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    color: var(--ink-2);
+  }
+  .legend-item svg { flex: none; }
+
+  .caption {
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    max-width: 78ch;
+  }
+  .caption strong { color: var(--ink); font-weight: 600; }
+
+  .tbl-wrap { overflow-x: auto; }
+  table {
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    width: 100%;
+    min-width: 480px;
+  }
+  th, td {
+    text-align: left;
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+  th { color: var(--ink-2); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td.num { text-align: right; }
+  tr.our-row td { font-weight: 600; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pt { transition: r 0.15s ease, opacity 0.15s ease; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>PCA: our 3 strains vs. the 145-strain published panel</h1>
+    <p>Principal component analysis on the same merged, genome-wide SNP set used for the ADMIXTURE and BIONJ-tree placements — an independent, unsupervised cross-check. Asia and Americas are strongly divergent lineages that dominate PC1/PC2, which compresses every other cluster near the origin; the right panel zooms into that region, where the actual placement question lives.</p>
+  </header>
+
+  <div class="figure">
+    <div class="panels">
+      <div class="panel">
+        <p class="panel-label">Full view — PC1 vs PC2</p>
+        <svg id="panelFull" viewBox="0 0 520 460"></svg>
+      </div>
+      <div class="panel">
+        <p class="panel-label">Zoomed — dashed region above</p>
+        <svg id="panelZoom" viewBox="0 0 520 460"></svg>
+      </div>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <p class="caption">
+    <strong>Reading this:</strong> each published strain is drawn with its Table&nbsp;S1 ecological/geographic cluster's color and marker shape. Our three isolates (YH26, YH72, YH140) are nearly coincident in PC space — genome-wide distances between them are an order of magnitude smaller than to any published strain — so they're shown as a single black-diamond group rather than three overlapping points. In the zoomed panel, our strains sit closest to <strong>Canada-trees</strong> along PC1, offset slightly on PC2 from the main core cluster — consistent with the ADMIXTURE and tree placements, and with a wild population that has diverged somewhat from the specific published Canada-trees accessions. Hover any point for its exact coordinates.
+  </p>
+
+  <div class="tbl-wrap">
+    <table id="ourTable"></table>
+  </div>
+</div>
+
+<script>
+const DATA = [
+["ERR2886487","Europe/Domestic-2",-0.0132713885803518,0.0150436231232099,-0.00306413198234686],
+["ERR2886488","Europe/Domestic-2",-0.0163354537658264,0.0148759314522908,-0.00422244653528213],
+["ERR2886489","Europe/Domestic-1",-0.0104296111851727,0.00897582786153876,0.00872496788309847],
+["ERR2886490","Europe/Domestic-1",-0.0114292252126857,0.00988997002005234,0.00690947589548013],
+["ERR2886491","Europe/Domestic-1",-0.0105259000177662,0.0089588522848191,0.00866974993985462],
+["ERR2886492","Europe/Domestic-2",-0.0172405954067214,0.0156302323379024,-0.0055115248665292],
+["ERR2886494","Europe-Mix",-0.0221262028045061,0.0208443861482746,-0.0149454765694607],
+["ERR2886495","Europe/Domestic-1",-0.0104234944030988,0.00897773764965221,0.00873057299228433],
+["ERR2886497","Americas",0.0914140936344731,-0.305480604238206,-0.0204196600237059],
+["ERR2886498","Europe/Domestic-2",-0.0173079583801744,0.0157181006653819,-0.00569070032925344],
+["ERR2886499","unknown",-0.0188919475045795,0.0186297822114588,-0.00976823921649491],
+["ERR2886500","Europe/Domestic-1",-0.0104287202394312,0.00897727205140495,0.00873300884438419],
+["ERR2886501","Europe/Domestic-1",-0.0104901945113257,0.00894328297234495,0.00875805268561879],
+["ERR2886502","Europe/Domestic-1",-0.010331239831443,0.00882594453679694,0.00897649866241462],
+["ERR2886503","Europe-Mix",-0.0215005680216388,0.0202888461146421,-0.0139584639533832],
+["ERR2886504","Europe/Domestic-1",-0.0105499555332271,0.00895304177221007,0.00872030374502645],
+["ERR2886506","Americas",0.0914443093250796,-0.305640675567325,-0.0204947413491203],
+["ERR2886507","Asia",0.534892074150304,0.184699706065272,-0.0167408453319245],
+["ERR2886509","Europe/Domestic-2",-0.0163404693134084,0.0148637951883686,-0.00421827098623096],
+["ERR2886510","Americas",0.104896728202415,-0.349735310190658,-0.0278955094744272],
+["ERR2886511","Canada-trees",-0.0120728141267884,0.00515107005314993,0.0323625775168017],
+["ERR2886517","Europe-Mix",-0.021673041136957,0.0203974514569993,-0.0142295189456066],
+["ERR2886518","Canada-trees",-0.0121400323001963,0.00531431329533605,0.0319245605665405],
+["ERR2886519","Asia",0.539242467534699,0.185917783281698,-0.0170786963629528],
+["ERR2886520","Europe/Domestic-2",-0.017307449088165,0.0157241994249009,-0.00569491493016427],
+["ERR2886521","Canada-trees",-0.0120405330286064,0.00524373702869945,0.032230347287351],
+["ERR2886522","Canada-trees",-0.0118323809435511,0.00529596188433991,0.0322043000145018],
+["ERR2886523","Canada-trees",-0.0121587851516358,0.00517987260887655,0.0321092838771463],
+["ERR2886525","Europe-Mix",-0.0216674371301298,0.020393321476622,-0.0142215909342147],
+["ERR2886526","Europe-Mix",-0.0216724811213631,0.0203926685163915,-0.0142228437283464],
+["ERR2886527","Canada-trees",-0.0122482315374256,0.00531791465828647,0.0323315500512234],
+["ERR2886529","Europe-Mix",-0.0216582563557666,0.0203738995779,-0.0142177106645148],
+["ERR2886530","Canada-trees",-0.0122240381385572,0.00529557552215593,0.032190385196363],
+["ERR2886531","Canada-trees",-0.012273453019337,0.00529547099600482,0.0322615923866382],
+["ERR2886532","Europe-Mix",-0.0216617739267766,0.0203920777814124,-0.0142213865337092],
+["ERR2886533","Americas",0.0902822748685413,-0.300888661691587,-0.0192911171672557],
+["ERR2886534","Americas",0.0894542471988921,-0.298070979409457,-0.0188650385903239],
+["ERR2886535","Americas",0.0903862655511984,-0.300187245165775,-0.0181703722290864],
+["ERR2886536","Americas",0.0900767747714091,-0.301074343361378,-0.0197238288301308],
+["ERR2886537","Americas",0.0906269285814519,-0.303376586718587,-0.0205739257166301],
+["ERR2886538","Americas",0.0906445361872445,-0.303456314886128,-0.0205828344517495],
+["ERR2886539","Europe-Mix",-0.0221320557113887,0.0208499895012231,-0.0149597247816049],
+["ERR2886540","Europe-Mix",-0.0221334454581828,0.0208525657463043,-0.0149513075678346],
+["ERR2886541","Europe-Mix",-0.0221250457694468,0.020852327338665,-0.014953567838093],
+["ERR2886542","Europe/Domestic-1",-0.0116113699684434,0.0100809265641836,0.00633518685846054],
+["SRR29081268","Europe/Domestic-1",-0.0123798107479705,0.0107448553868607,0.00500431666169488],
+["SRR29081269","Europe-Mix",-0.022074741350515,0.0208191748071041,-0.0148997923638443],
+["SRR29081270","Europe-Mix",-0.0220805545964531,0.0208027571103524,-0.014885365280117],
+["SRR29081271","Europe-Mix",-0.0220130342934474,0.0208236839574941,-0.0148959066029159],
+["SRR29081272","Europe/Domestic-1",-0.0105326632455051,0.00895929011514274,0.00871028297548575],
+["SRR29081273","Europe/Domestic-1",-0.011898999554377,0.0103087389878265,0.00584136331186791],
+["SRR29081274","Europe-Mix",-0.0220258223220468,0.0207922740896742,-0.0148948411979317],
+["SRR29081275","Europe-Mix",-0.022082631063744,0.020832492084327,-0.0149030686287632],
+["SRR29081276","Europe-Mix",-0.0220949229265931,0.0207869113694152,-0.01486589234035],
+["SRR29081277","Europe-Mix",-0.0219689149860566,0.0208019922407751,-0.0148359841779323],
+["SRR29081278","unknown",0.0224543706471689,-0.0246292138810088,0.981166008678972],
+["SRR29081279","Europe-Mix",-0.0221140239657266,0.0208260190539538,-0.0148798030489521],
+["SRR29081280","Europe-Mix",-0.0220402815735335,0.020834405531833,-0.0148934559799355],
+["SRR29081281","Europe-Mix",-0.0220964193041042,0.0207869099732653,-0.0148717664034451],
+["SRR29081282","Europe-Mix",-0.0221014518375766,0.0208304444180578,-0.0149442343228087],
+["SRR29081283","Europe-Mix",-0.0220200967058501,0.0208708335247287,-0.0150103071389125],
+["SRR29081284","Europe-Mix",-0.0220781607841178,0.0208218218342427,-0.0149072076698814],
+["SRR29081285","Europe-Mix",-0.0219514519307156,0.0207278994781582,-0.0148920633869319],
+["SRR29081286","Europe-Mix",-0.0220105999039306,0.020828543634184,-0.0148634661777092],
+["SRR29081287","Europe-Mix",-0.0219612022386708,0.0207236824080508,-0.0148996552389223],
+["SRR29081288","Europe-Mix",-0.0220915881657865,0.0208147701656988,-0.0148954186446092],
+["SRR29081289","Asia",0.54502945459257,0.187745836056368,-0.0170790644966448],
+["SRR29081290","Europe-Mix",-0.0221154624115846,0.020827345275964,-0.0149458593240657],
+["SRR29081291","Europe-Mix",-0.0220942102133075,0.0208036098017423,-0.0148729778582441],
+["SRR29081292","Europe-Mix",-0.022029679081363,0.02084152115737,-0.0149290985420833],
+["SRR29081293","Europe-Mix",-0.0221384122317843,0.0209694052382678,-0.0151688033090545],
+["SRR29081294","Europe-Mix",-0.0220796464299982,0.020791899956475,-0.014879696646244],
+["SRR29081295","Europe-Mix",-0.0221022062880467,0.0208128396202874,-0.0149264983091792],
+["SRR29081296","Europe-Mix",-0.022032648890133,0.020816586536796,-0.0148798986447578],
+["SRR29081297","Europe-Mix",-0.0220372434510824,0.0208212491423215,-0.0148829834218534],
+["SRR29081298","Europe-Mix",-0.0220241374774534,0.0207600310904068,-0.0147939376560709],
+["SRR29081299","Europe-Mix",-0.0220162001649192,0.0208817905635728,-0.0149858536932161],
+["SRR29081300","Europe/Domestic-1",-0.0105414668971911,0.00897707972428009,0.00865556020293103],
+["SRR29081301","Europe/Domestic-1",-0.0105156873363324,0.0089775477192594,0.00872903640229841],
+["SRR29081302","Europe-Mix",-0.022121548249979,0.0209618383766326,-0.0151668270017098],
+["SRR29081303","Europe-Mix",-0.022082579924963,0.0207980427491458,-0.0149053664854792],
+["SRR29081304","Europe-Mix",-0.0220875132135315,0.0208239644912584,-0.0149267250216076],
+["SRR29081305","Europe-Mix",-0.0221248100639128,0.0208059865722057,-0.0149200051821276],
+["SRR29081306","Europe-Mix",-0.0219805098607364,0.0208116628274498,-0.0148574195102719],
+["SRR29081307","Europe-Mix",-0.0221016931564824,0.0208300067221826,-0.0149489078326967],
+["SRR29081308","Europe-Mix",-0.0220988215381793,0.0208121093955934,-0.0148687101152834],
+["SRR29081309","Europe/Domestic-2",-0.0172281796121307,0.0156195465008034,-0.00550851245102317],
+["SRR29081310","Europe-Mix",-0.0220848250257189,0.0207839299697426,-0.0148912954129015],
+["SRR29081311","Europe/Domestic-1",-0.0114206474532234,0.00989307830375843,0.00691761284991985],
+["SRR29081312","Europe-Mix",-0.0220477450531343,0.0207791122050848,-0.0148703256215873],
+["SRR29081313","Europe-Mix",-0.0221803886466227,0.0210069744438363,-0.0152030813079535],
+["SRR29081314","Europe-Mix",-0.0219861726483644,0.0208185828670649,-0.0148633462750801],
+["SRR29081315","Europe-Mix",-0.0220211940270439,0.0207893781020022,-0.0148536611940633],
+["SRR29081316","Europe-Mix",-0.0220245671182103,0.020777955627531,-0.0148478820083982],
+["SRR29081317","Europe-Mix",-0.0220680165157005,0.0207968963768193,-0.014863035369003],
+["SRR29081318","Europe-Mix",-0.0220651567051905,0.020814741894761,-0.0148510878131746],
+["SRR29081319","Europe-Mix",-0.0220565100542334,0.0207765669476689,-0.0148273692277589],
+["SRR29081320","Europe-Mix",-0.0221073406038124,0.020804853813578,-0.0149135901110731],
+["SRR29081321","Europe/Domestic-2",-0.0171648284358774,0.0155364508736002,-0.00537045792534053],
+["SRR29081322","Europe/Domestic-1",-0.0114212241717014,0.00989455877374071,0.00691836519076793],
+["SRR29081323","Europe/Domestic-1",-0.01050383998149,0.00897862531815781,0.00869771380002033],
+["SRR29081324","Europe/Domestic-2",-0.0172111910378919,0.0155588571595065,-0.00542331497252608],
+["SRR29081325","Europe/Domestic-2",-0.017201290493453,0.0156036758015756,-0.0055053136980922],
+["SRR29081326","Europe-Mix",-0.0220956817298997,0.0207856058884634,-0.014863939666472],
+["SRR29081327","Europe-Mix",-0.0220094994264277,0.020755081900043,-0.0148205020163703],
+["SRR29081328","Europe-Mix",-0.0220754492714308,0.0208034510902117,-0.0148778796470961],
+["SRR29081329","Europe-Mix",-0.022123157740127,0.0208035788996676,-0.0149221777314238],
+["SRR29081330","Europe-Mix",-0.0220377710219002,0.0207681047925363,-0.0148576706126332],
+["SRR29081331","Europe-Mix",-0.0220099654840972,0.0208235968236583,-0.0149248601498665],
+["SRR29081332","Europe-Mix",-0.0219873899078401,0.020803613516005,-0.0148990158382795],
+["SRR29081333","Europe/Domestic-2",-0.0133162353972452,0.0150627158166702,-0.00304870444199543],
+["SRR29081334","Europe-Mix",-0.0219721054084807,0.0208736991865583,-0.0149191074143592],
+["SRR29081335","Europe/Domestic-2",-0.0172095693282863,0.0155588910708831,-0.00542555430729794],
+["SRR29081336","Europe/Domestic-2",-0.0171948732756636,0.0155755201557545,-0.00543660412883286],
+["SRR29081337","Europe/Domestic-2",-0.0172409971059103,0.0156352741217659,-0.00553178300226728],
+["SRR29081338","Europe-Mix",-0.0220994423821092,0.0210094977374472,-0.0152000599981081],
+["SRR29081339","Europe-Mix",-0.0220362547307991,0.0207703851684113,-0.0147900234792853],
+["SRR29081340","Europe/Domestic-1",-0.0104804969186966,0.00894543223189565,0.00871633424221051],
+["SRR29081341","Europe-Mix",-0.0213095600854236,0.0203326176015665,-0.0139656401749963],
+["SRR29081342","Europe-Mix",-0.0214905457426519,0.0203306409612464,-0.0140487875126995],
+["SRR29081343","Europe/Domestic-2",-0.0165821514952408,0.0151300448865272,-0.0045952187960786],
+["SRR29081344","Europe-Mix",-0.0216103623733999,0.0204900604453819,-0.0142918258108978],
+["SRR29081345","Europe-Mix",-0.0213106686464549,0.0203316356547279,-0.0139646429827623],
+["SRR29081346","Europe/Domestic-2",-0.0172851970470278,0.0157116557152358,-0.00565251518631439],
+["SRR29081347","Europe/Domestic-2",-0.0171683061332563,0.015546382318343,-0.00538836834134118],
+["SRR29081348","Europe/Domestic-1",-0.0123696652425799,0.0107376209769252,0.00499306583056202],
+["SRR29081349","Europe-Mix",-0.0221152247486578,0.0209721367534016,-0.0151063700673123],
+["SRR29081350","Europe-Mix",-0.0219847279896251,0.0208427867224391,-0.0150684993723465],
+["SRR29081351","Europe-Mix",-0.0221747530206976,0.0210393198542403,-0.0152662508191716],
+["SRR29081352","Europe-Mix",-0.0220316040336255,0.0209189936049462,-0.0150417620719019],
+["SRR29081353","Europe-Mix",-0.0220995196487937,0.0209949069055444,-0.0151658987483499],
+["SRR29081354","Europe-Mix",-0.022108471853349,0.0209775064231169,-0.0151687621731274],
+["SRR29081355","Europe-Mix",-0.0216035221024501,0.0204782569528855,-0.0142149867098801],
+["SRR29081356","Europe/Domestic-1",-0.0107010101165121,0.00913978694082894,0.00832487527503261],
+["SRR29081357","Europe/Domestic-2",-0.0172096598251791,0.0155577322748727,-0.00544763634162029],
+["SRR29081358","Canada-trees",-0.0121896085347433,0.00518636294153814,0.0328788645540224],
+["SRR29081359","Canada-trees",-0.0122118496072969,0.00517193735795901,0.0328472162031738],
+["SRR29081360","Europe-Mix",-0.0221031517515749,0.0208252249863288,-0.0149115677493152],
+["SRR29081361","Europe-Mix",-0.0216656985953675,0.0206027726473601,-0.0144198000297015],
+["SRR29081362","Europe/Domestic-2",-0.0172280271682128,0.0155728319517522,-0.00544190352055118],
+["SRR29081363","Europe-Mix",-0.021501097429412,0.0203886435051447,-0.0142319797772783],
+["SRR29081364","Europe/Domestic-2",-0.0169599342581202,0.0156181978031706,-0.00544696061703066],
+["SRR29081365","Europe-Mix",-0.0220314270439098,0.0208997741033523,-0.0150116827147483],
+["SRR29081366","Europe-Mix",-0.0216638515264203,0.0204613747580986,-0.0143007377003371],
+["SRR29081367","Europe-Mix",-0.0215657781794116,0.020407564142861,-0.0141335388526173],
+["YH26","OUR_STRAIN",0.000776087260892473,-0.00520099093723018,0.0287146702264281],
+["YH72","OUR_STRAIN",0.000806291588802258,-0.00514743595196424,0.0286842232652003],
+["YH140","OUR_STRAIN",0.00072787381877143,-0.00501195292723075,0.028688819363784]
+];
+
+const CLUSTERS = ["Asia","Americas","Canada-trees","Europe/Domestic-1","Europe/Domestic-2","Europe-Mix","unknown","OUR_STRAIN"];
+const COLORS = {
+  "Asia":               "#2a78d6",
+  "Americas":           "#008300",
+  "Canada-trees":       "#e87ba4",
+  "Europe/Domestic-1":  "#eda100",
+  "Europe/Domestic-2":  "#1baf7a",
+  "Europe-Mix":         "#eb6834",
+  "unknown":            "#4a3aa7",
+  "OUR_STRAIN":         "#000000"
+};
+const LABELS = {
+  "Asia":"Asia", "Americas":"Americas", "Canada-trees":"Canada-trees",
+  "Europe/Domestic-1":"Europe/Domestic-1", "Europe/Domestic-2":"Europe/Domestic-2",
+  "Europe-Mix":"Europe-Mix", "unknown":"Unknown", "OUR_STRAIN":"Our strains (n=3)"
+};
+const SHAPE = {
+  "Asia":"circle", "Americas":"triangle", "Canada-trees":"square",
+  "Europe/Domestic-1":"diamond", "Europe/Domestic-2":"plus",
+  "Europe-Mix":"star", "unknown":"x", "OUR_STRAIN":"diamond"
+};
+
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  return e;
+}
+
+function marker(cluster, cx, cy, size, extra) {
+  const g = el("g", extra || {});
+  const color = COLORS[cluster];
+  const shape = SHAPE[cluster];
+  const s = size;
+  if (shape === "circle") {
+    g.appendChild(el("circle", { cx, cy, r: s, fill: color, "fill-opacity": 0.85 }));
+  } else if (shape === "triangle") {
+    const pts = [[cx, cy - s * 1.15], [cx + s, cy + s * 0.75], [cx - s, cy + s * 0.75]];
+    g.appendChild(el("polygon", { points: pts.map(p => p.join(",")).join(" "), fill: color, "fill-opacity": 0.85 }));
+  } else if (shape === "square") {
+    g.appendChild(el("rect", { x: cx - s * 0.85, y: cy - s * 0.85, width: s * 1.7, height: s * 1.7, fill: color, "fill-opacity": 0.85 }));
+  } else if (shape === "diamond") {
+    const pts = [[cx, cy - s * 1.2], [cx + s * 1.05, cy], [cx, cy + s * 1.2], [cx - s * 1.05, cy]];
+    g.appendChild(el("polygon", { points: pts.map(p => p.join(",")).join(" "), fill: color, "fill-opacity": 0.9 }));
+  } else if (shape === "plus" || shape === "x" || shape === "star") {
+    const glyph = shape === "plus" ? "✚" : shape === "x" ? "✕" : "★";
+    const t = el("text", { x: cx, y: cy, fill: color, "font-size": s * 2.3, "text-anchor": "middle", "dominant-baseline": "central", "fill-opacity": 0.9 });
+    t.textContent = glyph;
+    g.appendChild(t);
+  }
+  return g;
+}
+
+function niceTicks(min, max, count) {
+  const range = max - min;
+  const raw = range / count;
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const norm = raw / mag;
+  const step = (norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10) * mag;
+  const start = Math.ceil(min / step) * step;
+  const ticks = [];
+  for (let v = start; v <= max + step * 0.001; v += step) ticks.push(v);
+  return { ticks, step };
+}
+
+function fmt(v, step) {
+  const decimals = Math.max(0, Math.ceil(-Math.log10(step)) + (step.toString().replace(/^-/, "").match(/^0\.0*[1-9]/) ? 0 : 0));
+  return v.toFixed(Math.min(4, Math.max(0, decimals)));
+}
+
+function drawPanel(svgId, domainX, domainY, points, dashedRegion) {
+  const svg = document.getElementById(svgId);
+  const W = 520, H = 460;
+  const M = { l: 56, r: 20, t: 16, b: 46 };
+  const pw = W - M.l - M.r, ph = H - M.t - M.b;
+
+  const sx = v => M.l + (v - domainX[0]) / (domainX[1] - domainX[0]) * pw;
+  const sy = v => M.t + ph - (v - domainY[0]) / (domainY[1] - domainY[0]) * ph;
+
+  const tx = niceTicks(domainX[0], domainX[1], 5);
+  const ty = niceTicks(domainY[0], domainY[1], 5);
+
+  tx.ticks.forEach(v => {
+    svg.appendChild(el("line", { class: "grid-line", x1: sx(v), x2: sx(v), y1: M.t, y2: M.t + ph }));
+    const t = el("text", { class: "axis-label", x: sx(v), y: M.t + ph + 18, "text-anchor": "middle" });
+    t.textContent = fmt(v, tx.step);
+    svg.appendChild(t);
+  });
+  ty.ticks.forEach(v => {
+    svg.appendChild(el("line", { class: "grid-line", x1: M.l, x2: M.l + pw, y1: sy(v), y2: sy(v) }));
+    const t = el("text", { class: "axis-label", x: M.l - 8, y: sy(v) + 4, "text-anchor": "end" });
+    t.textContent = fmt(v, ty.step);
+    svg.appendChild(t);
+  });
+
+  svg.appendChild(el("line", { class: "axis-line", x1: M.l, x2: M.l, y1: M.t, y2: M.t + ph }));
+  svg.appendChild(el("line", { class: "axis-line", x1: M.l, x2: M.l + pw, y1: M.t + ph, y2: M.t + ph }));
+
+  const xt = el("text", { class: "axis-title", x: M.l + pw / 2, y: H - 6, "text-anchor": "middle" });
+  xt.textContent = "PC1";
+  svg.appendChild(xt);
+  const yt = el("text", { class: "axis-title", x: 14, y: M.t + ph / 2, "text-anchor": "middle", transform: `rotate(-90, 14, ${M.t + ph / 2})` });
+  yt.textContent = "PC2";
+  svg.appendChild(yt);
+
+  if (dashedRegion) {
+    const [rx0, rx1, ry0, ry1] = dashedRegion;
+    svg.appendChild(el("rect", {
+      class: "zoom-box",
+      x: sx(rx0), y: sy(ry1),
+      width: sx(rx1) - sx(rx0), height: sy(ry0) - sy(ry1)
+    }));
+  }
+
+  const ourPoints = points.filter(p => p[1] === "OUR_STRAIN");
+  const otherPoints = points.filter(p => p[1] !== "OUR_STRAIN");
+
+  otherPoints.forEach(p => {
+    const [id, cluster, pc1, pc2] = p;
+    if (pc1 < domainX[0] || pc1 > domainX[1] || pc2 < domainY[0] || pc2 > domainY[1]) return;
+    const g = marker(cluster, sx(pc1), sy(pc2), 4.2, { class: "pt" });
+    const title = el("title", {});
+    title.textContent = `${id} — ${LABELS[cluster]}\nPC1 ${pc1.toFixed(5)}  PC2 ${pc2.toFixed(5)}`;
+    g.appendChild(title);
+    svg.appendChild(g);
+  });
+
+  if (ourPoints.length) {
+    const cx = ourPoints.reduce((s, p) => s + p[2], 0) / ourPoints.length;
+    const cy = ourPoints.reduce((s, p) => s + p[3], 0) / ourPoints.length;
+    if (cx >= domainX[0] && cx <= domainX[1] && cy >= domainY[0] && cy <= domainY[1]) {
+      const g = marker("OUR_STRAIN", sx(cx), sy(cy), 7, { class: "pt" });
+      const title = el("title", {});
+      title.textContent = ourPoints.map(p => `${p[0]}: PC1 ${p[2].toFixed(5)}, PC2 ${p[3].toFixed(5)}`).join("\n");
+      g.appendChild(title);
+      svg.appendChild(g);
+
+      if (svgId === "panelZoom") {
+        const lx = sx(cx) + 26, ly = sy(cy) - 14;
+        svg.appendChild(el("line", { x1: sx(cx), y1: sy(cy), x2: lx - 4, y2: ly + 4, stroke: "var(--ink)", "stroke-width": 1 }));
+        const t = el("text", { x: lx, y: ly, "font-size": 11, "font-weight": 600, fill: "var(--ink)" });
+        t.textContent = "Our strains";
+        svg.appendChild(t);
+      }
+    }
+  }
+}
+
+const fullDomainX = [-0.03, 0.56];
+const fullDomainY = [-0.36, 0.20];
+const zoomDomainX = [-0.026, 0.004];
+const zoomDomainY = [-0.008, 0.024];
+
+drawPanel("panelFull", fullDomainX, fullDomainY, DATA, [zoomDomainX[0], zoomDomainX[1], zoomDomainY[0], zoomDomainY[1]]);
+drawPanel("panelZoom", zoomDomainX, zoomDomainY, DATA, null);
+
+const legend = document.getElementById("legend");
+CLUSTERS.forEach(c => {
+  const item = document.createElement("div");
+  item.className = "legend-item";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("width", "16");
+  svg.setAttribute("height", "16");
+  svg.setAttribute("viewBox", "0 0 16 16");
+  svg.appendChild(marker(c, 8, 8, c === "OUR_STRAIN" ? 5 : 3.6, {}));
+  item.appendChild(svg);
+  const span = document.createElement("span");
+  span.textContent = LABELS[c];
+  item.appendChild(span);
+  legend.appendChild(item);
+});
+
+const ourRows = DATA.filter(p => p[1] === "OUR_STRAIN");
+const tbl = document.getElementById("ourTable");
+tbl.innerHTML = `<thead><tr><th>Strain</th><th class="num">PC1</th><th class="num">PC2</th><th class="num">PC3</th></tr></thead>` +
+  "<tbody>" + ourRows.map(r => `<tr class="our-row"><td>${r[0]}</td><td class="num">${r[2].toFixed(5)}</td><td class="num">${r[3].toFixed(5)}</td><td class="num">${r[4].toFixed(5)}</td></tr>`).join("") + "</tbody>";
+</script>

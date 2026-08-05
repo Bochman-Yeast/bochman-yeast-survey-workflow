@@ -1,0 +1,146 @@
+strain	ucm_code	seq_code	source	location	country	genocluster	sequencing	origin	Scaffolds	N50	Biosample	Bioproject
+CBS10520	Lt007	LATH_AAB	tree	Europe	Russia	Europe/Domestic-2	batch_2	wild	1457	354673	SAMEA5078304	PRJEB29656
+CBS10521	Lt008	LATH_AAC	tree	Europe	Finland	Europe/Domestic-2	batch_2	wild	1306	422561	SAMEA5078305	PRJEB29656
+CBS137	Lt009	LATH_AAD	fruit	Europe	Netherland	Europe/Domestic-1	batch_2	anthropized	830	354457	SAMEA5078306	PRJEB29656
+CBS1877	Lt010	LATH_AAE	grape	Europe	Italy	Europe/Domestic-1	batch_2	anthropized	1224	370863	SAMEA5078307	PRJEB29656
+CBS2860	Lt011	LATH_AAF	grape	Europe	Italy	Europe/Domestic-1	batch_2	anthropized	1382	377850	SAMEA5078308	PRJEB29656
+CBS5464	Lt014	LATH_AAH	plant	Australia	Australia	Europe-Mix	batch_2	wild	1605	347738	SAMEA5078311	PRJEB29656
+CBS6340T	Lt036	LATH_AAI	mermelade	Europe	Russia	Europe/Domestic-1	batch_2	anthropized	874	322770	SAMEA5078312	PRJEB29656
+CBS7772	Lt016	LATH_AAK	animal	South_America	Brazil	Americas	batch_2	wild	1483	382951	SAMEA5078314	PRJEB29656
+MUCL31341	Lt032	LATH_AAL	grape	Europe	Italy	Europe/Domestic-2	batch_2	anthropized	1094	787717	SAMEA5078337	PRJEB29656
+UWOPS 79-110	Lt044	LATH_AAN	tree	North_America	Canada, Ontario	Canada-trees	batch_2	wild	1885	433557	SAMEA5078340	PRJEB29656
+UWOPS 79-117	Lt046	LATH_AAO	tree	North_America	Canada, Pinery	Europe-Mix	batch_2	wild	1759	264981	SAMEA5078342	PRJEB29656
+UWOPS 79-162	Lt047	LATH_AAP	tree	North_America	Canada, Ontario	Europe-Mix	batch_2	wild	1720	333735	SAMEA5078343	PRJEB29656
+UWOPS 79-248	Lt050	LATH_AAQ	tree	North_America	Canada, Ontario	Europe-Mix	batch_2	wild	1607	265100	SAMEA5078346	PRJEB29656
+UWOPS 79-255	LATH_AAR	LATH_AAR	fruit	North_America	Canada, Ontario	Canada-trees	batch_2	wild	1783	265139	SAMEA5078347	PRJEB29656
+UWOPS 80-19	LATH_AAS	LATH_AAS	plant	North_America	Canada, Ontario	Canada-trees	batch_2	wild	1776	284402	SAMEA5078348	PRJEB29656
+UWOPS 81-125	LATH_AAT	LATH_AAT	tree	North_America	Canada, Ontario	Europe-Mix	batch_2	wild	1735	276564	SAMEA5078349	PRJEB29656
+UWOPS 83-1097.1	Lt051	LATH_AAU	plant	North_America	Cayman Islands, Carman Brac	Americas	batch_2	wild	828	300472	SAMEA5078350	PRJEB29656
+UWOPS 83-1101.1	Lt052	LATH_AAV	plant	North_America	Cayman Islands, Carman Brac	Americas	batch_2	wild	1183	361192	SAMEA5078351	PRJEB29656
+UWOPS 85-51.1	Lt054	LATH_AAW	plant	North_America	USA, Florida	Americas	batch_2	wild	2497	326943	SAMEA5078353	PRJEB29656
+UWOPS 85-312.1	Lt053	LATH_AAX	animal	North_America	USA, Arizona	Americas	batch_2	wild	1565	448246	SAMEA5078352	PRJEB29656
+UWOPS 94-426.2	Lt058	LATH_AAY	fermented	North_America	Mexico, Jalisco	Europe/Domestic-1	batch_2	anthropized	1136	246654	SAMEA5078359	PRJEB29656
+KEH.34.B.3	Lt031	LATH_AAZ	grape	North_America	USA, Missouri	Canada-trees	batch_2	anthropized	1958	313139	SAMEA5078328	PRJEB29656
+DMKU-RK275	Lt028	LATH_ABA	plant	Asia	Thailand	Asia	batch_2	wild	1342	344520	SAMEA5078324	PRJEB29656
+LM047	LATH_ABC	LATH_ABC	nature	Asia	Thailand	Asia	batch_2	wild	800	265206	SAMEA5078336	PRJEB29656
+NRRL Y-27937	Lt033	LATH_ABD	animal	North_America	USA, Louisiania	Canada-trees	batch_2	wild	1893	276846	SAMEA5078339	PRJEB29656
+NRRL Y-27911	Lt034	LATH_ABE	animal	North_America	USA, Louisiania	Canada-trees	batch_2	wild	1944	270655	SAMEA5078338	PRJEB29656
+CBS2907	Lt012	LATH_ABF	soil	South_Africa	South_Africa	Europe/Domestic-2	batch_2	wild	1444	231212	SAMEA5078309	PRJEB29656
+UWOPS 79-164	Lt048	LATH_ABH	tree	North_America	Canada, Ontario	Canada-trees	batch_2	wild	1829	265347	SAMEA5078344	PRJEB29656
+UWOPS 90-10.1	Lt055	LATH_ABJ	plant	North_America	Bahamas	Americas	batch_2	wild	1519	223445	SAMEA5078354	PRJEB29656
+UWOPS 90-1020.1	LATH_ABK	LATH_ABK	fruit	North_America	Bahamas	Americas	batch_2	anthropized	1557	231748	SAMEA5078355	PRJEB29656
+UWOPS 91-902.1	LATH_ABL	LATH_ABL	plant	North_America	Hawaii	Europe-Mix	batch_2	wild	1596	216905	SAMEA5078356	PRJEB29656
+UWOPS 91-910.1	Lt056	LATH_ABM	plant	North_America	Hawaii	Europe-Mix	batch_2	wild	1612	261965	SAMEA5078357	PRJEB29656
+UWOPS 91-912.1	Lt057	LATH_ABN	plant	North_America	Hawaii	Europe-Mix	batch_2	wild	1520	195370	SAMEA5078358	PRJEB29656
+IY 05-6-6-2-3-3	LATH_ABO	LATH_ABO	Insect	North_America	USA	Americas	batch_2	wild	1449	321614	SAMEA5078327	PRJEB29656
+DBVPG 2551	Lt019	LATH_ABP	grape	Europe	Italy	Europe/Domestic-2	batch_2	anthropized	1132	239133	SAMEA5078315	PRJEB29656
+DBVPG 2700	Lt020	LATH_ABQ	grape	Europe	Spain		batch_2	anthropized	1595	248880	SAMEA5078316	PRJEB29656
+DBVPG 3418	Lt021	LATH_ABR	animal	Europe	Italy	Europe/Domestic-1	batch_2	wild	1086	354409	SAMEA5078317	PRJEB29656
+DBVPG 3464	Lt022	LATH_ABS	grape	Europe	Spain	Europe/Domestic-1	batch_2	anthropized	1031	377158	SAMEA5078318	PRJEB29656
+DBVPG 3466	Lt023	LATH_ABT	grape	Europe	Spain	Europe/Domestic-1	batch_2	anthropized	1106	265879	SAMEA5078319	PRJEB29656
+DBVPG 3469	Lt024	LATH_ABU	grape	Europe	Spain	Europe-Mix	batch_2	anthropized	1469	247619	SAMEA5078320	PRJEB29656
+DBVPG 4014	Lt025	LATH_ABV	soil	Europe	Italy	Europe/Domestic-1	batch_2	wild	1088	238425	SAMEA5078321	PRJEB29656
+DBVPG 6867	Lt027	LATH_ABX	plant	South_America	Brazil	Americas	batch_2	wild	1545	255643	SAMEA5078323	PRJEB29656
+Fin. 89-2	Lt030	LATH_ABY	tree	Europe	Finland	Europe/Domestic-2	batch_2	wild	1346	255670	SAMEA5078326	PRJEB29656
+LL13-038	LATH_ACN	LATH_ACN	tree	North_America	USA, Massachussets	Europe-Mix	batch_2	wild	1734	265904	SAMEA5078334	PRJEB29656
+LL13-171	LATH_ACQ	LATH_ACQ	tree	North_America	Canada	Canada-trees	batch_2	wild	1997	296372	SAMEA5078335	PRJEB29656
+10-1489	Lt002	Lt002	grape	Europe	Černochov; Slovakia	Europe-Mix	batch_1	anthropized	617	1273747	SAMN41391136	PRJNA1111406
+11-1808	Lt004	Lt004	ND	ND	ND	Europe-Mix	batch_1	anthropized	610	1272599	SAMN41391137	PRJNA1111406
+11-1840	Lt005	Lt005	ND	ND	ND	Europe-Mix	batch_1	anthropized	613	951581	SAMN41391138	PRJNA1111406
+CBS 4728	Lt013	Lt013	grape	Europe	Former Czechoslovakia	Europe-Mix	batch_1	anthropized	541	1271575	SAMN41391139	PRJNA1111406
+CBS 6467	Lt015	Lt015	tree	Asia	Asia	Europe/Domestic-2	batch_1	wild	470	1087412	SAMN41391140	PRJNA1111406
+CECT 1951	Lt017	Lt017	ND	ND	ND	Europe/Domestic-1	batch_1		246	1396040	SAMN41391141	PRJNA1111406
+Concerto	Lt018	Lt018	ND	Europe	Spain	Europe/Domestic-1	batch_1		213	1346452	SAMN41391142	PRJNA1111406
+DBVPG 4035	Lt026	Lt026	grape	Europe	Ex Yugoslavia	Europe/Domestic-1	batch_1	anthropized	412	1403582	SAMN41391143	PRJNA1111406
+DMKU-RK361	Lt029	Lt029	plant	Asia	Thailand	Asia	batch_1	wild	366	378897	SAMN41391144	PRJNA1111406
+PYCC 2908	Lt035	Lt035	animal	ND	ND		batch_1	wild	395	1333435	SAMN41391145	PRJNA1111406
+PYCC 6375	Lt038	Lt038	soil	Europe	Arteixo, Galicia, Spain	Europe-Mix	batch_1	wild	515	1381520	SAMN41391146	PRJNA1111406
+PYCC 6806	Lt039	Lt039	soil	Europe	Arrabida Park, Portugal	Europe/Domestic-2	batch_1	wild	508	1261608	SAMN41391147	PRJNA1111406
+PYCC 6986	Lt040	Lt040	tree	Europe	Evolution canyon, Israel	Europe-Mix	batch_1	wild	535	1329105	SAMN41391148	PRJNA1111406
+PYCC 7194	Lt041	Lt041	tree	Europe	Santarem, Portugal	Europe/Domestic-2	batch_1	wild	398	1398042	SAMN41391149	PRJNA1111406
+PYCC 7205	Lt042	Lt042	tree	Europe	Alqueva, Portugal	Europe-Mix	batch_1	wild	662	987227	SAMN41391150	PRJNA1111406
+PYCC 8789	Lt043	Lt043	tree	Europe	Alqueva, Portugal	Europe-Mix	batch_1	wild	677	1334828	SAMN41391151	PRJNA1111406
+UWOPS 79-116	Lt045	Lt045	tree	North_America	Canada, Pinery	Canada-trees	batch_1	wild	427	1258216	SAMN41391152	PRJNA1111406
+UWOPS 79-195	Lt049	Lt049	tree	North_America	Canada, Ontario	Canada-trees	batch_1	wild	634	1257285	SAMN41391153	PRJNA1111406
+ISA 2380	Lt059	Lt059	fermented	ND	ND	Europe/Domestic-2	batch_1	anthropized	401	1335417	SAMN41391154	PRJNA1111406
+ISA 2308	Lt060	Lt060	ND	ND	ND	Europe/Domestic-1	batch_1		374	1390091	SAMN41391155	PRJNA1111406
+EVEGA-147	Lt068	Lt068	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	595	1020868	SAMN41391156	PRJNA1111406
+EVEGA-190	Lt073	Lt073	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	572	1334444	SAMN41391157	PRJNA1111406
+EVEGA-226	Lt074	Lt074	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	551	1335589	SAMN41391158	PRJNA1111406
+EVEGA-307R	Lt077	Lt077	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	605	1120032	SAMN41391159	PRJNA1111406
+EVEGA-26	Lt080	Lt080	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	883	828774	SAMN41391160	PRJNA1111406
+ICVV43	Lt083	Lt083	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	557	1263919	SAMN41391161	PRJNA1111406
+ICVV45	Lt084	Lt084	grape	Europe	Spain	Europe/Domestic-1	batch_1	anthropized	276	1399360	SAMN41391162	PRJNA1111406
+MY115	Lt085	Lt085	grape	Europe	Spain	Europe/Domestic-2	batch_1	anthropized	395	1257067	SAMN41391163	PRJNA1111406
+EXCELLANCE	Lt086	Lt086	grape	ND	ND	Europe/Domestic-2	batch_1	anthropized	310	1335679	SAMN41391164	PRJNA1111406
+LAKTIA	Lt087	Lt087	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	504	1069278	SAMN41391165	PRJNA1111406
+LEVULIA	Lt088	Lt088	grape	europe	ND	Europe/Domestic-2	batch_1	anthropized	463	1335034	SAMN41391166	PRJNA1111406
+EnartisFerm Qƙ	Lt089	Lt089	grape	Europe	ND	Europe-Mix	batch_1	anthropized	451	1271629	SAMN41391167	PRJNA1111406
+VINFLORA	Lt090	Lt090	grape	Europe	ND	Europe-Mix	batch_1	anthropized	520	1332163	SAMN41391168	PRJNA1111406
+IFI 1135	Lt091	Lt091	grape	Europe	Spain	Europe/Domestic-1	batch_1	anthropized	198	1346098	SAMN41391169	PRJNA1111406
+UPM 13.1	Lt092	Lt092	grape	ND	ND	Europe-Mix	batch_1	anthropized	481	952745	SAMN41391170	PRJNA1111406
+37BS	Lt093	Lt093	grape	ND	ND	Europe-Mix	batch_1	anthropized	590	1020268	SAMN41391171	PRJNA1111406
+UT01	Lt095	Lt095	grape	Europe	Spain	Europe/Domestic-2	batch_1	anthropized	417	1257132	SAMN41391172	PRJNA1111406
+AF06	Lt100	Lt100	grape	Europe	Spain	Europe/Domestic-2	batch_1	anthropized	481	945987	SAMN41391173	PRJNA1111406
+AF10	Lt101	Lt101	grape	Europe	Spain	Europe/Domestic-2	batch_1	anthropized	350	1334828	SAMN41391174	PRJNA1111406
+WN12	Lt103	Lt103	plant	Europe	Spain	Europe-Mix	batch_1	anthropized	574	823645	SAMN41391175	PRJNA1111406
+WN15	Lt105	Lt105	soil	Europe	Spain	Europe-Mix	batch_1	anthropized	521	1335843	SAMN41391176	PRJNA1111406
+G13	Lt106	Lt106	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	569	1376708	SAMN41391177	PRJNA1111406
+G32	Lt107	Lt107	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	664	1117071	SAMN41391178	PRJNA1111406
+P41	Lt108	Lt108	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	627	664825	SAMN41391179	PRJNA1111406
+P65	Lt110	Lt110	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	659	1375351	SAMN41391180	PRJNA1111406
+P205	Lt115	Lt115	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	601	715546	SAMN41391181	PRJNA1111406
+EM119	Lt118	Lt118	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	572	1264798	SAMN41391182	PRJNA1111406
+LG21-05	Lt120	Lt120	grape	Europe	Spain	Europe/Domestic-2	batch_1	anthropized	367	869071	SAMN41391183	PRJNA1111406
+R21-01	Lt121	Lt121	grape	Europe	Spain	Europe/Domestic-2	batch_1	anthropized	339	1398053	SAMN41391184	PRJNA1111406
+B20-2.02	Lt122	Lt122	grape	Europe	Spain	Europe/Domestic-1	batch_1	anthropized	412	1389267	SAMN41391185	PRJNA1111406
+B21-1.04	Lt123	Lt123	grape	Europe	Spain	Europe/Domestic-2	batch_1	anthropized	361	946268	SAMN41391186	PRJNA1111406
+ROD21-1	Lt126	Lt126	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	622	1264605	SAMN41391187	PRJNA1111406
+ROD21-2	Lt132	Lt132	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	751	726227	SAMN41391188	PRJNA1111406
+ROD21-21	Lt133	Lt133	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	606	826896	SAMN41391189	PRJNA1111406
+ROD21-29	Lt135	Lt135	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	577	1335231	SAMN41391190	PRJNA1111406
+ROD21-35	Lt139	Lt139	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	641	1262874	SAMN41391191	PRJNA1111406
+ROD21-4	Lt141	Lt141	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	555	754321	SAMN41391192	PRJNA1111406
+ROD21-46	Lt143	Lt143	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	649	951868	SAMN41391193	PRJNA1111406
+ROD21-49	Lt145	Lt145	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	555	752879	SAMN41391194	PRJNA1111406
+ROD21-51	Lt147	Lt147	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	695	840952	SAMN41391195	PRJNA1111406
+ROD21-62	Lt151	Lt151	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	606	968885	SAMN41391196	PRJNA1111406
+ROD21-99	Lt157	Lt157	grape	Europe	Spain	Europe/Domestic-2	batch_1	anthropized	389	1334976	SAMN41391197	PRJNA1111406
+BD-612	Lt160	Lt160	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	771	712733	SAMN41391198	PRJNA1111406
+BD-715	Lt162	Lt162	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	651	1334351	SAMN41391199	PRJNA1111406
+CR-520	Lt165	Lt165	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	640	1334734	SAMN41391200	PRJNA1111406
+P46	Lt116	Lt166	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	575	784598	SAMN41391201	PRJNA1111406
+CR-720	Lt176	Lt176	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	559	1334965	SAMN41391202	PRJNA1111406
+MR-507	Lt179	Lt179	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	596	823625	SAMN41391203	PRJNA1111406
+MR-616	Lt184	Lt184	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	519	1335577	SAMN41391204	PRJNA1111406
+VJ-102	Lt316	Lt190	grape	Europe	Spain	Europe/Domestic-1	batch_1	anthropized	404	1345827	SAMN41391205	PRJNA1111406
+VJ-525	Lt201	Lt201	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	526	1306074	SAMN41391206	PRJNA1111406
+TR-319	Lt315	Lt202	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	580	952396	SAMN41391207	PRJNA1111406
+TR-609	Lt205	Lt205	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	587	1337212	SAMN41391208	PRJNA1111406
+MJ-618	Lt210	Lt210	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	575	875181	SAMN41391209	PRJNA1111406
+MJ-704	Lt211	Lt211	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	689	872580	SAMN41391210	PRJNA1111406
+CB-616	Lt218	Lt218	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	554	992392	SAMN41391211	PRJNA1111406
+A11-612	Lt224	Lt224	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	499	952178	SAMN41391212	PRJNA1111406
+CR-120	Lt247	Lt225	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	521	1372011	SAMN41391213	PRJNA1111406
+MR-802	Lt191	Lt227	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	607	952579	SAMN41391214	PRJNA1111406
+CB-204	Lt233	Lt233	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	614	1335153	SAMN41391215	PRJNA1111406
+CB-313	Lt236	Lt236	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	562	1144956	SAMN41391216	PRJNA1111406
+CR-107	Lt241	Lt241	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	672	829535	SAMN41391217	PRJNA1111406
+CR-204	Lt248	Lt248	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	674	1376070	SAMN41391218	PRJNA1111406
+CR-311	Lt253	Lt253	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	759	689907	SAMN41391219	PRJNA1111406
+CR-706	Lt169	Lt256	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	471	1335202	SAMN41391220	PRJNA1111406
+EVEGA-03	Lt166	Lt258	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	396	1334695	SAMN41391221	PRJNA1111406
+LS-116	Lt259	Lt259	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	641	867845	SAMN41391222	PRJNA1111406
+LS-205	Lt261	Lt261	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	606	712393	SAMN41391223	PRJNA1111406
+MJ-205	Lt282	Lt282	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	571	825001	SAMN41391224	PRJNA1111406
+MJ-220	Lt287	Lt287	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	582	951859	SAMN41391225	PRJNA1111406
+MJ-311	Lt288	Lt288	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	427	1337433	SAMN41391226	PRJNA1111406
+NG-108	Lt305	Lt305	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	542	1265067	SAMN41391227	PRJNA1111406
+NG-116	Lt307	Lt307	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	622	952191	SAMN41391228	PRJNA1111406
+TR-108	Lt309	Lt309	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	561	1085416	SAMN41391229	PRJNA1111406
+VJ-108	Lt317	Lt317	grape	Europe	Spain	Europe/Domestic-1	batch_1	anthropized	360	1389140	SAMN41391230	PRJNA1111406
+VJ-114	Lt319	Lt319	grape	Europe	Spain	Europe/Domestic-1	batch_1	anthropized	448	1340977	SAMN41391231	PRJNA1111406
+VJ-124	Lt320	Lt320	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	412	1074327	SAMN41391232	PRJNA1111406
+VJ-147	Lt322	Lt322	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	554	1335133	SAMN41391233	PRJNA1111406
+LS-412	Lt268	Lt323	grape	Europe	Spain	Europe-Mix	batch_1	anthropized	460	1335203	SAMN41391234	PRJNA1111406
+VJ-417	Lt324	Lt324	grape	Europe	Spain	Europe/Domestic-1	batch_1	anthropized	282	1341250	SAMN41391235	PRJNA1111406

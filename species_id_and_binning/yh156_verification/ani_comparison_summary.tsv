@@ -1,0 +1,3 @@
+reference	accession	ANI_percent	align_fraction_query_percent	species_boundary_cleared
+Schizosaccharomyces_japonicus_yFS275	GCF_000149845.2	87.94	56.02	NO
+Schizosaccharomyces_versatilis_CBS103_type_strain	GCA_032882995.1	99.14	71.95	YES

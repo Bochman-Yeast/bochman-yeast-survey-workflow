@@ -1,0 +1,2 @@
+Ref_file	Query_file	ANI	Align_fraction_ref	Align_fraction_query	Ref_name	Query_name
+/N/scratch/bochman/yeast_id/refs/Schizosaccharomyces_japonicus/genome.fna	results/YH156/assembly_v3_canu_draft/assembly.fasta	87.94	81.51	56.02	NW_011627860.1 Schizosaccharomyces japonicus yFS275 unplaced genomic scaffold supercont5.1, whole genome shotgun sequence	tig00000057

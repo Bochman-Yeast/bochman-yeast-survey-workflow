@@ -1,0 +1,15 @@
+=== building YH166 het+panel-overlapping site list ===
+35800 placement/yh166_het_sites.tsv
+=== extracting panel genotypes at those sites (single-pass streaming filter) ===
+35800
+=== converting to genotype tsv ===
+35800 placement/yh166_panel_genotypes.tsv
+=== allele sharing analysis ===
+=== Mean allele frequency of YH166's private-het alt alleles, by superclade ===
+(higher = that superclade more often already carries the same alt allele YH166 is heterozygous for)
+  S3. Asian Fermentation    mean_alt_freq=0.4625  (n_sites=35800)
+  S4. Wild                  mean_alt_freq=0.3606  (n_sites=35800)
+  S2. Beer                  mean_alt_freq=0.3497  (n_sites=35800)
+  Unassigned/Admixed        mean_alt_freq=0.3247  (n_sites=35800)
+  S1. Wine                  mean_alt_freq=0.2935  (n_sites=35800)
+DONE

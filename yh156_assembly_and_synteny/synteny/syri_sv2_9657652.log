@@ -1,0 +1,33 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+           ^^^^^^^^^^^^^^^^
+  File "syri/pyxFiles/synsearchFunctions.pyx", line 534, in syri.synsearchFunctions.syri
+  File "<stringsource>", line 664, in View.MemoryView.memoryview_cwrapper
+  File "<stringsource>", line 352, in View.MemoryView.memoryview.__cinit__
+ValueError: buffer source array is read-only
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/N/scratch/bochman/conda_envs/synteny/bin/syri", line 11, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/site-packages/syri/scripts/syri.py", line 328, in main
+    syri(args)
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/site-packages/syri/scripts/syri.py", line 215, in syri
+    startSyri(args, coords[["aStart", "aEnd", "bStart", "bEnd", "aLen", "bLen", "iden", "aDir", "bDir", "aChr", "bChr"]])
+  File "syri/pyxFiles/synsearchFunctions.pyx", line 509, in syri.synsearchFunctions.startSyri
+  File "syri/pyxFiles/synsearchFunctions.pyx", line 510, in syri.synsearchFunctions.startSyri
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/N/scratch/bochman/conda_envs/synteny/lib/python3.11/multiprocessing/pool.py", line 774, in get
+    raise self._value
+ValueError: buffer source array is read-only

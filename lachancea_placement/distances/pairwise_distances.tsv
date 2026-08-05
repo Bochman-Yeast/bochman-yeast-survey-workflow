@@ -1,0 +1,8 @@
+comparison	type	strain_a	strain_b	distance	cluster_b
+within_group	collection_isolate_pair	YH26	YH72	0.02335	Our strains
+within_group	collection_isolate_pair	YH26	YH140	0.03010	Our strains
+within_group	collection_isolate_pair	YH72	YH140	0.03156	Our strains
+nearest_panel_neighbor	isolate_to_panel	YH26	ERR2886511	0.13372	Canada-trees
+nearest_panel_neighbor	isolate_to_panel	YH72	ERR2886527	0.12820	Canada-trees
+nearest_panel_neighbor	isolate_to_panel	YH140	ERR2886527	0.13122	Canada-trees
+summary_statistic	mean_of_three_nearest_neighbor_distances	-	-	0.131047	Canada-trees

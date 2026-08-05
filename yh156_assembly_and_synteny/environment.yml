@@ -1,0 +1,41 @@
+# YH156 assembly correction and synteny comparison — tool versions
+#
+# Confirmed versions (from stdout banners or mamba/conda install transaction logs
+# captured during the original analysis session):
+#   busco=5.8.3
+#   mummer4=4.0.1        (nucmer, delta-filter, show-coords)
+#   syri=1.7.1
+#   plotsr=1.1.1
+#   minimap2=2.31-r1302  (parsed from minimap2's own version banner)
+#   numpy=1.26.4          # downgrade attempted to fix a syri crash; did NOT fix it
+#                          # (root cause was pandas, see below) but left in place
+#   pandas=1.5.3          # actual fix for a syri crash under pandas>=2 Copy-on-Write
+#   matplotlib=3.7.3      # required by plotsr; newer matplotlib removed an internal API
+#
+# NOT independently confirmed within the original session (carried from project notes
+# or simply not printed by any command run) — verify against the source conda
+# environments (yeast-id, canu, synteny on Quartz) before treating as authoritative:
+#   canu (stated 2.3, unverified)
+#   medaka (stated 2.2.1, unverified)
+#   seqkit (version not found)
+#   blast / blastn / blastx (version not found)
+#   biopython (version not found)
+
+name: yh156_assembly_synteny
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - busco=5.8.3
+  - mummer4=4.0.1
+  - syri=1.7.1
+  - plotsr=1.1.1
+  - minimap2=2.31
+  - numpy=1.26.4
+  - pandas=1.5.3
+  - matplotlib=3.7.3
+  - canu  # =2.3 stated but unverified — confirm before publishing
+  - medaka  # =2.2.1 stated but unverified — confirm before publishing
+  - seqkit
+  - blast
+  - biopython

@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the repository (below) and the manuscript it accompanies."
+title: "[CALL-OUT: this repository's own name, e.g. 'Bioinformatic workflow for <Paper 2 survey title>']"
+version: 1.0.0
+date-released: "[CALL-OUT: date of first release]"
+authors:
+  - family-names: "Bochman"
+    given-names: "Matthew L."
+    orcid: "https://orcid.org/0000-0002-2807-0452"
+    affiliation: "Molecular & Cellular Biochemistry Department, Indiana University"
+doi: "[CALL-OUT: Zenodo DOI, minted at first GitHub release -- see RELEASING.md]"
+repository-code: "[CALL-OUT: this repository's own GitHub URL]"
+license: MIT
+keywords:
+  - wild yeast
+  - population genomics
+  - Saccharomyces
+  - Schizosaccharomyces
+  - Lachancea
+  - species identification
+preferred-citation:
+  type: unpublished
+  title: "[CALL-OUT: Paper 2's actual manuscript title]"
+  authors:
+    - family-names: "Bochman"
+      given-names: "Matthew L."
+  year: 2026
+references:
+  - type: software
+    title: "FIDDL: False Introgression Detection via Depth-matched controls and Loci-recurrence"
+    repository-code: "[CALL-OUT: confirm FIDDL's actual repository URL -- FIDDL's own pyproject.toml
+           still has this as an unresolved placeholder ('[CALL-OUT: fill in real repository URL
+           before release]'), not a confirmed https://github.com/Bochman-Yeast/FIDDL. Verify
+           before citing it here rather than assuming that URL is live.]"
+    doi: "[CALL-OUT: confirm FIDDL's actual minted DOI -- the doi field in FIDDL's own
+           CITATION.cff is currently still a placeholder ('[CALL-OUT: Zenodo DOI, minted at
+           first GitHub release -- see RELEASING.md]'), not a resolved value; verify before
+           citing it here rather than assuming 10.5281/zenodo.21509544 is live.]"
+    notes: "Used for the YH166/YH229 introgression-withdrawal analysis; not duplicated in this repository."

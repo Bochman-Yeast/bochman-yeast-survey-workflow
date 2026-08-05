@@ -1,0 +1,17 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+
+# Conda / Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Logs and scratch output that shouldn't be tracked if regenerated later
+*.log.tmp

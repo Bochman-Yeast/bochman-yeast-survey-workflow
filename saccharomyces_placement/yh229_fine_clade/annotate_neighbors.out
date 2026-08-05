@@ -1,0 +1,50 @@
+
+=== YH123 ===
+  immediate sister clade: 1 other tip(s), support=0.022
+    Clade breakdown: [('36. North American Wild', 1)]
+    SuperClade breakdown: [('S4. Wild', 1)]
+    Examples: ['AMB (36. North American Wild)']
+  grandparent level: 2 other tip(s), support=0.998
+    Clade breakdown: [('36. North American Wild', 2)]
+    SuperClade breakdown: [('S4. Wild', 2)]
+    Examples: ['AMC (36. North American Wild)', 'AMB (36. North American Wild)']
+
+=== YH166 ===
+  immediate sister clade: 1 other tip(s), support=0.838
+    Clade breakdown: [(nan, 1)]
+    SuperClade breakdown: [(nan, 1)]
+    Examples: ['XTRA_EFV (nan)']
+  grandparent level: 3 other tip(s), support=0.846
+    Clade breakdown: [(nan, 3)]
+    SuperClade breakdown: [(nan, 3)]
+    Examples: ['XTRA_EFV (nan)', 'BIE (nan)', 'BPA (nan)']
+
+=== YH196 ===
+  immediate sister clade: 4 other tip(s), support=1.0
+    Clade breakdown: [('22. French Guiana Human', 4)]
+    SuperClade breakdown: [(nan, 4)]
+    Examples: ['ADE (22. French Guiana Human)', 'XTRA_DSD (22. French Guiana Human)', 'XTRA_FCK (22. French Guiana Human)', 'SACE_YCL (22. French Guiana Human)']
+  grandparent level: 5 other tip(s), support=1.0
+    Clade breakdown: [('22. French Guiana Human', 5)]
+    SuperClade breakdown: [(nan, 5)]
+    Examples: ['XTRA_DAU (22. French Guiana Human)', 'ADE (22. French Guiana Human)', 'XTRA_DSD (22. French Guiana Human)', 'XTRA_FCK (22. French Guiana Human)', 'SACE_YCL (22. French Guiana Human)']
+
+=== YH229 ===
+  immediate sister clade: 3 other tip(s), support=1.0
+    Clade breakdown: [('12. Belgium Beer 1', 3)]
+    SuperClade breakdown: [(nan, 3)]
+    Examples: ['XTRA_EBL (12. Belgium Beer 1)', 'XTRA_EDC (12. Belgium Beer 1)', 'XTRA_EDD (12. Belgium Beer 1)']
+  grandparent level: 4 other tip(s), support=1.0
+    Clade breakdown: [('12. Belgium Beer 1', 4)]
+    SuperClade breakdown: [(nan, 4)]
+    Examples: ['XTRA_DYS (12. Belgium Beer 1)', 'XTRA_EBL (12. Belgium Beer 1)', 'XTRA_EDC (12. Belgium Beer 1)', 'XTRA_EDD (12. Belgium Beer 1)']
+
+=== DoF1 ===
+  immediate sister clade: 19 other tip(s), support=1.0
+    Clade breakdown: [('36. North American Wild', 18), (nan, 1)]
+    SuperClade breakdown: [('S4. Wild', 19)]
+    Examples: ['SACE_YCO (36. North American Wild)', 'XTRA_DAS (36. North American Wild)', 'XTRA_DEY (36. North American Wild)', 'XTRA_FLG (36. North American Wild)', 'XTRA_DEX (36. North American Wild)', 'XTRA_DEU (36. North American Wild)', 'XTRA_DEV (36. North American Wild)', 'XTRA_DEW (36. North American Wild)']
+  grandparent level: 26 other tip(s), support=1.0
+    Clade breakdown: [('36. North American Wild', 18), ('16. Canadian Wine', 5), (nan, 3)]
+    SuperClade breakdown: [('S4. Wild', 19), (nan, 7)]
+    Examples: ['XTRA_FJP (nan)', 'XTRA_FLT (16. Canadian Wine)', 'XTRA_FKF (16. Canadian Wine)', 'BTI (16. Canadian Wine)', 'XTRA_FKO (16. Canadian Wine)', 'XTRA_FJT (nan)', 'XTRA_FKC (16. Canadian Wine)', 'SACE_YCO (36. North American Wild)']

@@ -1,0 +1,430 @@
+<title>ADMIXTURE: L. thermotolerans supervised ancestry (K=6)</title>
+<style>
+  :root {
+    --surface:       #fcfcfb;
+    --page:          #f9f9f7;
+    --ink:           #0b0b0b;
+    --ink-2:         #52514e;
+    --muted:         #898781;
+    --grid:          #e1e0d9;
+    --axis:          #c3c2b7;
+    --border:        rgba(11,11,11,0.10);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      --surface:     #1a1a19;
+      --page:        #0d0d0d;
+      --ink:         #ffffff;
+      --ink-2:       #c3c2b7;
+      --muted:       #898781;
+      --grid:        #2c2c2a;
+      --axis:        #383835;
+      --border:      rgba(255,255,255,0.10);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface:     #1a1a19;
+    --page:        #0d0d0d;
+    --ink:         #ffffff;
+    --ink-2:       #c3c2b7;
+    --muted:       #898781;
+    --grid:        #2c2c2a;
+    --axis:        #383835;
+    --border:      rgba(255,255,255,0.10);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  header h1 {
+    font-size: 1.5rem;
+    font-weight: 650;
+    margin: 0 0 6px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  header p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    max-width: 70ch;
+    line-height: 1.5;
+  }
+  .figure {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    overflow-x: auto;
+  }
+  .chart-scroll {
+    min-width: 1000px;
+  }
+  svg { display: block; overflow: visible; }
+  .group-label {
+    fill: var(--ink-2);
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .group-n {
+    fill: var(--muted);
+    font-size: 10px;
+  }
+  .axis-label {
+    fill: var(--muted);
+    font-size: 10.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .axis-line { stroke: var(--axis); stroke-width: 1; }
+  .grid-line { stroke: var(--grid); stroke-width: 1; }
+  .group-divider { stroke: var(--border); stroke-width: 1; }
+  .our-tick { stroke: var(--ink); stroke-width: 1.5; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    color: var(--ink-2);
+  }
+  .swatch { width: 13px; height: 13px; border-radius: 2px; flex: none; }
+
+  .caption {
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    max-width: 80ch;
+  }
+  .caption strong { color: var(--ink); font-weight: 600; }
+
+  .tbl-wrap { overflow-x: auto; }
+  table {
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    width: 100%;
+    min-width: 620px;
+  }
+  th, td {
+    text-align: left;
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+  th { color: var(--ink-2); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td.num { text-align: right; }
+  tr.our-row td { font-weight: 600; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Supervised ADMIXTURE (K=6): our 3 strains vs. the 145-strain published panel</h1>
+    <p>Each bar is one sample's estimated ancestry proportions across the six published ecological/geographic clusters, with cluster identity fixed from Table&nbsp;S1 as ADMIXTURE's supervised reference labels — a model-based placement, independent of the PCA and BIONJ-tree cross-checks. Samples are grouped by assigned cluster; hover a bar for exact proportions.</p>
+  </header>
+
+  <div class="figure">
+    <div class="chart-scroll">
+      <svg id="chart" viewBox="0 0 1000 460"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <p class="caption">
+    <strong>Reading this:</strong> nearly every published strain resolves to &gt;99.9% membership in its own labeled cluster — expected for a supervised run and a good sanity check that the reconstructed panel and reference labels line up correctly. The two visibly mixed bars under <strong>Unknown</strong> are the two Table&nbsp;S1 gap samples (no published cluster assignment); one splits Europe/Domestic-2 vs. Europe-Mix ancestry, the other is admixed across most clusters. All three of our strains are essentially pure <strong>Canada-trees</strong> (99.995% each, marked with a black tick above their bars) — the same placement independently reached by both PCA and the BIONJ tree.
+  </p>
+
+  <div class="tbl-wrap">
+    <table id="ourTable"></table>
+  </div>
+</div>
+
+<script>
+const ADATA = [
+["ERR2886487","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["ERR2886488","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["ERR2886489","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["ERR2886490","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["ERR2886491","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["ERR2886492","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["ERR2886494","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886495","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["ERR2886497","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886498","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["ERR2886499","Unknown",0.386795,0.000010,0.613165,0.000010,0.000010,0.000010],
+["ERR2886500","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["ERR2886501","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["ERR2886502","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["ERR2886503","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886504","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["ERR2886506","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886507","Asia",0.000010,0.000010,0.000010,0.000010,0.999950,0.000010],
+["ERR2886509","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["ERR2886510","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886511","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["ERR2886517","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886518","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["ERR2886519","Asia",0.000010,0.000010,0.000010,0.000010,0.999950,0.000010],
+["ERR2886520","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["ERR2886521","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["ERR2886522","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["ERR2886523","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["ERR2886525","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886526","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886527","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["ERR2886529","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886530","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["ERR2886531","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["ERR2886532","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886533","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886534","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886535","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886536","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886537","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886538","Americas",0.000010,0.000010,0.000010,0.999950,0.000010,0.000010],
+["ERR2886539","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886540","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886541","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["ERR2886542","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081268","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081269","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081270","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081271","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081272","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081273","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081274","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081275","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081276","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081277","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081278","Unknown",0.434160,0.296607,0.044550,0.122973,0.044347,0.057362],
+["SRR29081279","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081280","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081281","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081282","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081283","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081284","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081285","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081286","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081287","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081288","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081289","Asia",0.000010,0.000010,0.000010,0.000010,0.999950,0.000010],
+["SRR29081290","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081291","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081292","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081293","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081294","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081295","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081296","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081297","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081298","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081299","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081300","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081301","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081302","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081303","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081304","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081305","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081306","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081307","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081308","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081309","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081310","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081311","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081312","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081313","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081314","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081315","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081316","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081317","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081318","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081319","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081320","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081321","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081322","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081323","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081324","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081325","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081326","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081327","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081328","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081329","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081330","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081331","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081332","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081333","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081334","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081335","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081336","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081337","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081338","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081339","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081340","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081341","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081342","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081343","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081344","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081345","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081346","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081347","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081348","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081349","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081350","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081351","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081352","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081353","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081354","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081355","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081356","Europe/Domestic-1",0.000010,0.999950,0.000010,0.000010,0.000010,0.000010],
+["SRR29081357","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081358","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["SRR29081359","Canada-trees",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["SRR29081360","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081361","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081362","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081363","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081364","Europe/Domestic-2",0.999950,0.000010,0.000010,0.000010,0.000010,0.000010],
+["SRR29081365","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081366","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["SRR29081367","Europe-Mix",0.000010,0.000010,0.999950,0.000010,0.000010,0.000010],
+["YH26","Our strains",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["YH72","Our strains",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950],
+["YH140","Our strains",0.000010,0.000010,0.000010,0.000010,0.000010,0.999950]
+];
+</script>
+<script>
+const COMPONENT_NAME = ["Europe/Domestic-2","Europe/Domestic-1","Europe-Mix","Americas","Asia","Canada-trees"];
+const COMPONENT_COLOR = ["#1baf7a","#eda100","#eb6834","#008300","#2a78d6","#e87ba4"];
+const GROUP_ORDER = ["Asia","Americas","Canada-trees","Europe/Domestic-1","Europe/Domestic-2","Europe-Mix","Unknown","Our strains"];
+
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  return e;
+}
+
+const grouped = {};
+GROUP_ORDER.forEach(g => grouped[g] = []);
+ADATA.forEach(row => grouped[row[1]].push(row));
+
+GROUP_ORDER.forEach(g => {
+  grouped[g].sort((a, b) => Math.max(...b.slice(2)) - Math.max(...a.slice(2)));
+});
+
+const svg = document.getElementById("chart");
+const W = 1000, H = 460;
+const M = { l: 40, r: 16, t: 16, b: 56 };
+const pw = W - M.l - M.r, ph = H - M.t - M.b;
+
+const gap = 10;
+const totalN = ADATA.length;
+const barTotalW = pw - gap * (GROUP_ORDER.length - 1);
+const barW = barTotalW / totalN;
+
+let x = M.l;
+const groupRanges = [];
+
+GROUP_ORDER.forEach(g => {
+  const rows = grouped[g];
+  const startX = x;
+  rows.forEach(row => {
+    const q = row.slice(2);
+    let y = M.t + ph;
+    q.forEach((v, ci) => {
+      const segH = v * ph;
+      y -= segH;
+      const rect = el("rect", {
+        x, y, width: Math.max(barW - 0.4, 0.2), height: segH,
+        fill: COMPONENT_COLOR[ci]
+      });
+      svg.appendChild(rect);
+    });
+    if (g === "Our strains") {
+      svg.appendChild(el("line", {
+        class: "our-tick",
+        x1: x + barW / 2, x2: x + barW / 2,
+        y1: M.t - 6, y2: M.t - 1
+      }));
+    }
+    const title = el("title", {});
+    title.textContent = `${row[0]} — ${g}\n` + q.map((v, ci) => `${COMPONENT_NAME[ci]}: ${(v * 100).toFixed(2)}%`).join("\n");
+    const hitArea = el("rect", { x, y: M.t, width: Math.max(barW - 0.4, 0.2), height: ph, fill: "transparent" });
+    hitArea.appendChild(title);
+    svg.appendChild(hitArea);
+    x += barW;
+  });
+  groupRanges.push({ g, startX, endX: x, n: rows.length });
+  x += gap;
+});
+
+[0, 0.25, 0.5, 0.75, 1].forEach(v => {
+  const y = M.t + ph - v * ph;
+  svg.appendChild(el("line", { class: "grid-line", x1: M.l, x2: W - M.r, y1: y, y2: y }));
+  const t = el("text", { class: "axis-label", x: M.l - 8, y: y + 3, "text-anchor": "end" });
+  t.textContent = v.toFixed(2);
+  svg.appendChild(t);
+});
+svg.appendChild(el("line", { class: "axis-line", x1: M.l, x2: M.l, y1: M.t, y2: M.t + ph }));
+
+groupRanges.forEach((r, i) => {
+  if (i > 0) {
+    const dividerX = r.startX - gap / 2;
+    svg.appendChild(el("line", { class: "group-divider", x1: dividerX, x2: dividerX, y1: M.t, y2: M.t + ph + 10 }));
+  }
+  const cx = (r.startX + r.endX) / 2;
+  const label = el("text", { class: "group-label", x: cx, y: M.t + ph + 20, "text-anchor": "middle" });
+  label.textContent = r.g;
+  svg.appendChild(label);
+  const nlabel = el("text", { class: "group-n", x: cx, y: M.t + ph + 33, "text-anchor": "middle" });
+  nlabel.textContent = `n=${r.n}`;
+  svg.appendChild(nlabel);
+});
+
+const ytitle = el("text", { class: "axis-label", x: 12, y: M.t + ph / 2, "text-anchor": "middle", transform: `rotate(-90, 12, ${M.t + ph / 2})`, "font-weight": "600" });
+ytitle.textContent = "Ancestry proportion";
+svg.appendChild(ytitle);
+
+const legend = document.getElementById("legend");
+COMPONENT_NAME.forEach((name, i) => {
+  const item = document.createElement("div");
+  item.className = "legend-item";
+  const sw = document.createElement("div");
+  sw.className = "swatch";
+  sw.style.background = COMPONENT_COLOR[i];
+  item.appendChild(sw);
+  const span = document.createElement("span");
+  span.textContent = name;
+  item.appendChild(span);
+  legend.appendChild(item);
+});
+const ourItem = document.createElement("div");
+ourItem.className = "legend-item";
+ourItem.innerHTML = '<div class="swatch" style="background:var(--ink)"></div><span>Our strains (tick mark)</span>';
+legend.appendChild(ourItem);
+
+const ourRows = ADATA.filter(r => r[1] === "Our strains");
+const tbl = document.getElementById("ourTable");
+tbl.innerHTML = `<thead><tr><th>Strain</th>${COMPONENT_NAME.map(n => `<th class="num">${n}</th>`).join("")}</tr></thead>` +
+  "<tbody>" + ourRows.map(r => `<tr class="our-row"><td>${r[0]}</td>${r.slice(2).map(v => `<td class="num">${(v*100).toFixed(3)}%</td>`).join("")}</tr>`).join("") + "</tbody>";
+</script>

@@ -1,0 +1,22 @@
+name: yeast-id
+channels:
+  - conda-forge
+  - bioconda
+channel_priority: strict
+dependencies:
+  - python=3.11
+  - seqkit=2.*
+  - nanoplot
+  - chopper
+  - flye
+  - minimap2
+  - samtools
+  - busco=5.*
+  - barrnap
+  - itsx
+  - blast
+  - skani
+  - ncbi-datasets-cli
+  - biopython
+  - pandas
+  - tabulate

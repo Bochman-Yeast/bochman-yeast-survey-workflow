@@ -1,0 +1,22 @@
+CP130698.1: 93 contig-junction N-gaps found
+CP130697.1: 48 contig-junction N-gaps found
+CP130699.1: 69 contig-junction N-gaps found
+
+=== Structural call proximity to contig junctions (within 2kb) ===
+DUPAL: 929 total, 268 near a contig junction (28.8%), 661 interior
+DUP: 867 total, 251 near a contig junction (29.0%), 616 interior
+INVDPAL: 540 total, 91 near a contig junction (16.9%), 449 interior
+INVDP: 521 total, 91 near a contig junction (17.5%), 430 interior
+NOTAL: 352 total, 108 near a contig junction (30.7%), 244 interior
+SYNAL: 174 total, 110 near a contig junction (63.2%), 64 interior
+HDR: 102 total, 69 near a contig junction (67.6%), 33 interior
+SYN: 99 total, 37 near a contig junction (37.4%), 62 interior
+TRANSAL: 84 total, 21 near a contig junction (25.0%), 63 interior
+TRANS: 63 total, 14 near a contig junction (22.2%), 49 interior
+INVAL: 51 total, 7 near a contig junction (13.7%), 44 interior
+INVTRAL: 48 total, 10 near a contig junction (20.8%), 38 interior
+INVTR: 40 total, 9 near a contig junction (22.5%), 31 interior
+CPG: 15 total, 2 near a contig junction (13.3%), 13 interior
+INV: 13 total, 4 near a contig junction (30.8%), 9 interior
+CPL: 11 total, 0 near a contig junction (0.0%), 11 interior
+TDM: 5 total, 0 near a contig junction (0.0%), 5 interior
