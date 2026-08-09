@@ -1,19 +1,23 @@
 # TOR-pathway gene coordinates for the targeted lookup (original task step 6).
 #
-# STATUS: NOT INDEPENDENTLY VERIFIED. This session's network egress proxy blocks
-# yeastgenome.org and ncbi.nlm.nih.gov, so every coordinate below comes from web-search
-# result snippets, not a fetched SGD/NCBI page. One systematic name below (LST8) was
-# actively wrong in an earlier search-summary pass before being corrected against a second,
-# independent search — treat every row here as "needs re-confirmation from a primary
-# source," not ground truth. Before using this file for real analysis, re-verify each row
-# directly against SGD (https://www.yeastgenome.org/locus/<systematic_name>) or NCBI Gene,
-# on Quartz where those sites are reachable, and delete this header once done.
+# STATUS: CONFIRMED 2026-08-09. Extracted directly from the GFF3 annotation shipped with
+# GCF_000146045.2 (the exact S288c reference FASTA used for mapping/variant calling in this
+# pipeline — reference/S288c_download/ncbi_dataset/data/GCF_000146045.2/genomic.gff),
+# filtered on each gene's locus_tag, then chromosome names cross-checked against that same
+# release's FASTA headers (reference/S288c_download/.../GCF_000146045.2_R64_genomic.fna).
+# This supersedes the earlier web-search-only draft, whose only two real errors were
+# KOG1's strand (was "?", now confirmed "-") and TCO89's coordinates (were UNVERIFIED, now
+# confirmed) -- every gene's chromosome assignment in the earlier draft turned out correct.
+#
+# NOT yet resolved: TOR1's FRB (FKBP12-rapamycin-binding) domain sub-coordinates. The GFF3
+# only gives the whole-gene extent; the domain boundaries within it require a UniProt
+# (P35169) feature-annotation lookup, still outstanding.
 #
 # Columns: standard_name, systematic_name, chromosome, start, end, strand, notes
 standard_name	systematic_name	chromosome	start	end	strand	notes
 FPR1	YNL135C	XIV	371882	372226	-	FKBP12; top candidate; check for LOF (nonsense/frameshift/start-loss)
-TOR1	YJR066W	X	UNVERIFIED	UNVERIFIED	+	Right arm of chr X per search snippet only; exact start/end not confirmed — re-derive from SGD before use. FRB domain sub-coordinates (needed for the missense screen) not yet identified at all and must be looked up separately (SGD protein domain annotation or UniProt P35169) before running the targeted FRB-region variant check.
+TOR1	YJR066W	X	559416	566828	+	Whole-gene extent confirmed from GFF3. FRB domain sub-coordinates (needed for the missense screen) still need a separate UniProt P35169 feature lookup before running the targeted FRB-region variant check.
 TOR2	YKL203C	XI	55935	63359	-
-KOG1	YHR186C	VIII	475999	480672	?	Strand not confirmed by search snippet — verify.
-LST8	YNL006W	XIV	620067	620978	+	Systematic name YNL006W confirmed via cross-check of two independent searches; an earlier single-search summary incorrectly returned YMR034W — illustrates why every row here needs primary-source re-verification, not just internal cross-checking within this session.
-TCO89	YPL180W	XVI	UNVERIFIED	UNVERIFIED	?	Only "left arm of chromosome XVI" found via search snippet; exact coordinates not confirmed.
+KOG1	YHR186C	VIII	475999	480672	-	Strand confirmed from GFF3 (was unconfirmed "?" in the earlier web-search-only draft).
+LST8	YNL006W	XIV	620067	620978	+
+TCO89	YPL180W	XVI	205248	207647	+	Coordinates confirmed from GFF3 (were UNVERIFIED in the earlier web-search-only draft).
