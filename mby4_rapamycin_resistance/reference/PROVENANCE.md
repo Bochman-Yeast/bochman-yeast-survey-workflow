@@ -35,24 +35,38 @@ sequence, with a contig N50 7.6x higher than candidate A's. It's also long-read 
 2017), matching the original task's explicit preference for "a recent PacBio/ONT W303
 assembly" over an older, more fragmented one.
 
+### Chromosome identity — RESOLVED
+
+Confirmed on Quartz (2026-08-09): the downloaded FASTA's sequence IDs are WGS accessions
+(`CBDILZ010000001.1`...`CBDILZ010000016.1`), but each header's free-text description states
+the chromosome directly (e.g. `... contig: chrI, whole genome shotgun sequence`) — a clean,
+unambiguous 1:1 mapping, all 16 nuclear chromosomes present, nothing ambiguous to resolve via
+alignment. Renamed for consistency with the `chr`-prefixed convention assumed throughout this
+package's scripts (`asm_vs_asm/depth_ratio_by_chrom.R`, `results/tor_pathway_lookup.sh`):
+
+```bash
+cp reference/W303.fna reference/W303.original_headers.fna   # kept for provenance
+sed -E 's/^>\S+ .*contig: (chr[IVX]+),.*/>\1/' reference/W303.original_headers.fna > reference/W303.fna
+```
+
+Result verified: headers are exactly `>chrI` through `>chrXVI`, correctly ordered (no
+Roman-numeral off-by-one, e.g. `chrIX`/`chrX`/`chrXI` all landed correctly). No
+best-hit-alignment-based chromosome assignment (as originally anticipated, following the
+`yh156_assembly_and_synteny` pseudo-chromosome approach) was needed after all.
+
+**Still open:** when S288c (GCF_000146045.2) is downloaded, its headers will likely be
+RefSeq-style (`NC_00113x.x ... chromosome I ...`), not `chrI` — apply the same renaming
+treatment there before the depth-ratio script can run against both references consistently.
+
 ### Caveats to carry into downstream steps
 
-1. **No chromosome-level naming/karyotype assignment.** The 16 contigs in GCA_965282845.1
-   are not labeled `chrI`...`chrXVI` — confirm actual FASTA header names with
-   `grep '>' reference/W303.fna` once downloaded. For `asm_vs_asm/depth_ratio_by_chrom.R`
-   and any per-chromosome aneuploidy screen against this reference specifically (as opposed
-   to against S288c, which does have standard chromosome names), contigs will need to be
-   assigned to a chromosome identity first — e.g. by best-hit alignment to S288c, the same
-   approach used in `../../yh156_assembly_and_synteny/synteny/build_and_run_syri_sv.sbatch`'s
-   pseudo-chromosome-building step. Do this before trusting any "chromosome X is amplified"
-   call made directly against the W303 reference's own contig coordinates.
-2. **Mitochondrial genome not confirmed present.** Candidate A explicitly reports a 94,871 bp
-   mitochondrial organelle contig; candidate B's metadata does not. Check the downloaded
-   FASTA for a contig of roughly that size before assuming MBY4 mitochondrial reads will map
-   at all against this W303 reference — if absent, that's a minor completeness gap (not
-   expected to affect the nuclear TOR-pathway targeted search) but should be noted in
-   `results/SUMMARY.md`'s caveats section.
-3. **Strain sub-lineage.** This is specifically "W303-G49," one isolate from a 100-strain
+1. **Mitochondrial genome confirmed absent.** Candidate A explicitly reports a 94,871 bp
+   mitochondrial organelle contig; candidate B's 16 contigs are all nuclear (`chrI`-`chrXVI`)
+   with no mitochondrial sequence included. This is a minor completeness gap (not expected to
+   affect the nuclear TOR-pathway targeted search) but should be noted in
+   `results/SUMMARY.md`'s caveats section — MBY4 mitochondrial reads simply won't map at all
+   against this W303 reference.
+2. **Strain sub-lineage.** This is specifically "W303-G49," one isolate from a 100-strain
    telomere-length survey, not necessarily an identical stock to whatever W303 background
    MBY4 may itself derive from. This is an unavoidable limitation of using any single
    reference strain as a stand-in for "W303" generally — flag it as a caveat in
