@@ -1,9 +1,9 @@
 #!/bin/bash
 # tor_pathway_lookup.sh — pull MBY4-specific variant status at each TOR-pathway gene.
 #
-# STATUS: untested template. DO NOT RUN until tor_pathway_genes.tsv coordinates are
-# verified (see that file's header) and the MBY4-specific call sets from
-# intersect_mby4_specific.sh exist.
+# STATUS: untested template. Coordinates in tor_pathway_genes.tsv are now fully confirmed
+# (GFF3 + UniProt, see that file's header). DO NOT RUN until the MBY4-specific call sets
+# from intersect_mby4_specific.sh exist.
 
 set -euo pipefail
 
@@ -29,7 +29,8 @@ while IFS=$'\t' read -r name systematic chrom start end strand notes; do
   echo
 done < "$GENES_TSV"
 
-echo "NOTE: chr${chrom} naming above assumes the reference FASTA uses 'chrI'..'chrXVI' style"
-echo "headers with region argument prefixed 'chr' + roman numeral from the TSV. Confirm"
-echo "actual header naming in the downloaded S288c FASTA (grep '>' reference/S288c_R64.fna)"
-echo "and adjust the chrom column / region string format in this script if it differs."
+echo "NOTE: chr${chrom} naming above assumes 'chrI'..'chrXVI' style headers -- confirmed"
+echo "against both reference/S288c_R64.fna and reference/W303.fna (both renamed to this"
+echo "convention, see reference/PROVENANCE.md). This script targets the S288c BAM"
+echo "(COVERAGE var above) specifically -- rerun against the W303 BAM/VCFs separately if a"
+echo "W303-side pileup check is also wanted for a given candidate."
