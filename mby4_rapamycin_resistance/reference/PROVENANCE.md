@@ -3,7 +3,20 @@
 ## S288c (R64)
 
 **Accession:** GCF_000146045.2 — as specified in the original task. This is the standard,
-well-established community reference (SGD/NCBI RefSeq).
+well-established community reference (SGD/NCBI RefSeq). Downloaded on Quartz (2026-08-09)
+with `datasets download genome accession GCF_000146045.2 --include genome,gff3` — genome and
+GFF3 annotation together, since the GFF3 is also the authoritative source for the
+TOR-pathway gene coordinates in `../results/tor_pathway_genes.tsv`.
+
+Headers renamed to match the same `chr`-prefixed convention as W303 (below), confirmed via
+`grep '>' reference/S288c_R64.fna`: 16 chromosomes (`chrI`-`chrXVI`) plus `chrmt`
+(mitochondrion, 17 sequences total — unlike W303, S288c's reference does include the
+mitochondrial genome):
+```bash
+cp S288c_download/ncbi_dataset/data/GCF_000146045.2/GCF_000146045.2_R64_genomic.fna reference/S288c_R64.original_headers.fna
+sed -E 's/^>\S+ .*chromosome ([IVX]+), complete sequence/>chr\1/; s/^>\S+ .*mitochondrion, complete genome/>chrmt/' \
+  reference/S288c_R64.original_headers.fna > reference/S288c_R64.fna
+```
 
 ## W303 — RESOLVED: GCA_965282845.1
 
@@ -54,9 +67,9 @@ Roman-numeral off-by-one, e.g. `chrIX`/`chrX`/`chrXI` all landed correctly). No
 best-hit-alignment-based chromosome assignment (as originally anticipated, following the
 `yh156_assembly_and_synteny` pseudo-chromosome approach) was needed after all.
 
-**Still open:** when S288c (GCF_000146045.2) is downloaded, its headers will likely be
-RefSeq-style (`NC_00113x.x ... chromosome I ...`), not `chrI` — apply the same renaming
-treatment there before the depth-ratio script can run against both references consistently.
+**Resolved:** S288c's headers were indeed RefSeq-style (`NC_00113x.x ... chromosome I,
+complete sequence`) and have now also been renamed to `chrI`-`chrXVI` (+ `chrmt`) — see the
+S288c section above. Both references now share the same naming convention.
 
 ### Caveats to carry into downstream steps
 
