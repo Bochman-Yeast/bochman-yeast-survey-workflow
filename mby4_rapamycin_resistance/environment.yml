@@ -1,0 +1,36 @@
+# MBY4 rapamycin resistance pipeline — tool versions
+#
+# STATUS: none of these versions are confirmed. This file was drafted in a session with no
+# access to Quartz's module system or conda environments, so nothing here comes from a
+# stdout banner or install transaction log (contrast ../yh156_assembly_and_synteny/environment.yml,
+# where every version was captured that way from the actual run). Treat every line below as
+# "a reasonable recent version to try," not a pin. Before running anything, activate/build
+# the real environment on Quartz, capture each tool's `--version` output, and rewrite this
+# file the way the yh156 package's environment.yml documents its own confirmed vs.
+# unconfirmed versions.
+#
+# Two genuinely different toolchains are bundled here (ONT read QC/assembly/polishing vs.
+# reference-based variant calling vs. assembly comparison) — consider splitting into
+# separate environments the way ../yh156_assembly_and_synteny/README.md recommends for its
+# four packages, if conflicts arise (Clair3's pinned pytorch/tensorflow stack in particular
+# is a common source of conflicts with everything else here).
+
+name: mby4_rapamycin
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - nanoplot          # read QC — version unconfirmed
+  - flye              # de novo assembly — version unconfirmed; confirm --nano-raw vs --nano-hq applicability for the installed version
+  - medaka            # ONT consensus polishing — version unconfirmed; model name (e.g. r1041_e82_400bps_sup_v5.2.0) must match the actual basecaller, see README.md open decision point 1
+  - minimap2          # mapping + asm-vs-asm alignment — version unconfirmed
+  - samtools          # BAM sort/index — version unconfirmed
+  - clair3            # ONT small-variant calling — version unconfirmed; requires a model bundle matching the basecaller (rerio/clair3 models), not the default that ships with the package
+  - sniffles=2        # structural variant calling — must be Sniffles2, not Sniffles1; version unconfirmed
+  - mummer4           # nucmer/dnadiff for asm-vs-asm cross-check — version unconfirmed
+  - bcftools          # VCF isec/filtering — version unconfirmed
+  - snpeff            # functional annotation — version unconfirmed; yeast (R64-1-1.99 or current) database must be downloaded separately, confirm exact database name on Quartz
+  - seqkit            # fasta/fastq stats utility
+  - r-base
+  - r-pafr            # PAF dot plots in R
+  - datasets          # NCBI datasets CLI, for confirming reference accessions (see reference/PROVENANCE.md)
