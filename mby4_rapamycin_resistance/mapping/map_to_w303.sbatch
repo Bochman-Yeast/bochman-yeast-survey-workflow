@@ -9,9 +9,9 @@
 #SBATCH --mem=32G
 #SBATCH --output=/N/scratch/bochman/mby4_rapamycin/mapping/map_w303_%j.log
 
-# STATUS: untested template. DO NOT RUN until the W303 accession is resolved
-# (../reference/PROVENANCE.md — currently two unverified candidates, neither downloaded).
-# MAP_PRESET must match map_to_s288c.sbatch's choice — see that script's header comment.
+# STATUS: untested template. W303 accession resolved (../reference/PROVENANCE.md —
+# GCA_965282845.1, downloaded and staged). Basecaller confirmed from read headers
+# (2026-08-09): dna_r10.4.1_e8.2_400bps_sup@v4.3.0 (see ../NOTES.md) -- lr:hq preset.
 
 source ~/.bashrc
 conda activate mby4_rapamycin
@@ -20,7 +20,7 @@ cd /N/scratch/bochman/mby4_rapamycin/mapping
 minimap2 --version
 samtools --version | head -1
 
-MAP_PRESET=map-ont   # PLACEHOLDER — confirm before running, must match map_to_s288c.sbatch
+MAP_PRESET=lr:hq   # confirmed for dna_r10.4.1_e8.2_400bps_sup@v4.3.0 -- see ../NOTES.md, must match map_to_s288c.sbatch
 REF=/N/scratch/bochman/mby4_rapamycin/reference/W303.fna   # PLACEHOLDER — path depends on accession resolution
 READS=/N/scratch/bochman/mby4_rapamycin/raw/MBY4.fastq.gz
 

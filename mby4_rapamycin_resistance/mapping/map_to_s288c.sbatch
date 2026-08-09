@@ -9,9 +9,8 @@
 #SBATCH --mem=32G
 #SBATCH --output=/N/scratch/bochman/mby4_rapamycin/mapping/map_s288c_%j.log
 
-# STATUS: untested template. MAP_PRESET below must match the basecaller-model decision
-# logged in ../NOTES.md (see ../raw/README.md) — map-ont for standard reads, lr:hq for
-# high-accuracy Q20+/R10.4.1-sup reads. Keep consistent with map_to_w303.sbatch.
+# STATUS: untested template. Basecaller confirmed from read headers (2026-08-09):
+# dna_r10.4.1_e8.2_400bps_sup@v4.3.0 (see ../NOTES.md) -- high-accuracy class, lr:hq preset.
 
 source ~/.bashrc
 conda activate mby4_rapamycin
@@ -20,7 +19,7 @@ cd /N/scratch/bochman/mby4_rapamycin/mapping
 minimap2 --version
 samtools --version | head -1
 
-MAP_PRESET=map-ont   # PLACEHOLDER — confirm before running
+MAP_PRESET=lr:hq   # confirmed for dna_r10.4.1_e8.2_400bps_sup@v4.3.0 -- see ../NOTES.md
 REF=/N/scratch/bochman/mby4_rapamycin/reference/S288c_R64.fna
 READS=/N/scratch/bochman/mby4_rapamycin/raw/MBY4.fastq.gz
 

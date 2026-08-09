@@ -72,12 +72,13 @@ Adjust the `#SBATCH --output` and in-script paths if the actual run uses a diffe
 
 ## Open decision points that MUST be resolved before running (do not silently default)
 
-1. **Basecaller model for MBY4 reads** — determines both `flye --nano-raw` vs
-   `--nano-hq` (step: `assembly/`) and `minimap2 -ax map-ont` vs `-x lr:hq` (step:
-   `mapping/`). Check the Plasmidsaurus delivery metadata / FASTQ header / run report for
-   the basecaller and model (e.g. `dna_r10.4.1_e8.2_400bps_sup`) before choosing. Record the
-   choice and reasoning in `NOTES.md` before running `assembly/run_flye.sbatch` or
-   `mapping/*.sbatch`. **Still open.**
+1. ~~Basecaller model for MBY4 reads~~ — **RESOLVED** on Quartz 2026-08-09: confirmed
+   directly from FASTQ read headers as `dna_r10.4.1_e8.2_400bps_sup@v4.3.0`. `assembly/`,
+   `mapping/*.sbatch` updated accordingly (`--nano-hq`, `-ax lr:hq`). See `NOTES.md` for
+   full detail. **Partially open:** the exact Medaka/Clair3 model-name strings
+   (`r1041_e82_400bps_sup_v430`) are search-derived, not yet confirmed against this Quartz
+   install's actual model lists — `assembly/medaka_polish.sbatch` and
+   `variants/clair3_*.sbatch` both flag this and the latter auto-verifies at runtime.
 2. ~~W303 reference accession~~ — **RESOLVED** on Quartz 2026-08-09: GCA_965282845.1, see
    `reference/PROVENANCE.md` for the full comparison and reasoning. Reference downloaded,
    staged at `reference/W303.fna`, headers renamed to `chrI`-`chrXVI`.

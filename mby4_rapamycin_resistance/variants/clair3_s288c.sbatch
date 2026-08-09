@@ -9,10 +9,13 @@
 #SBATCH --mem=32G
 #SBATCH --output=/N/scratch/bochman/mby4_rapamycin/variants/clair3_s288c_%j.log
 
-# STATUS: untested template. MODEL_PATH must be set to the Clair3 model matching MBY4's
-# basecaller — see ../README.md open decision point 1. run_clair3.sh's exact CLI flags
-# (esp. --platform, --model_path) should be checked against the installed Clair3 version's
-# own --help before running; do not assume flag names/defaults.
+# STATUS: untested template. Basecaller confirmed from read headers (2026-08-09):
+# dna_r10.4.1_e8.2_400bps_sup@v4.3.0 (see ../NOTES.md). MODEL_PATH below is a search-derived
+# guess (r1041_e82_400bps_sup_v430) NOT independently confirmed against this Quartz install
+# -- the find command below checks for it and fails loudly if absent rather than silently
+# running with a wrong/default model. run_clair3.sh's exact CLI flags (esp. --platform,
+# --model_path) should also be checked against the installed Clair3 version's own --help
+# before running; do not assume flag names/defaults.
 
 source ~/.bashrc
 conda activate mby4_rapamycin
@@ -21,7 +24,13 @@ run_clair3.sh --version 2>&1 | head -5 || true
 
 REF=/N/scratch/bochman/mby4_rapamycin/reference/S288c_R64.fna
 BAM=/N/scratch/bochman/mby4_rapamycin/mapping/MBY4_vs_S288c.sorted.bam
-MODEL_PATH=/PATH/TO/CLAIR3/MODEL   # PLACEHOLDER — must match basecaller, e.g. r1041_e82_400bps_sup
+MODEL_PATH=$(find "$CONDA_PREFIX" -iname "*r1041_e82_400bps_sup*" -type d 2>/dev/null | head -1)
+if [[ -z "$MODEL_PATH" ]]; then
+  echo "ERROR: no r1041_e82_400bps_sup Clair3 model found under \$CONDA_PREFIX. Verify the" >&2
+  echo "correct model name/location (e.g. via nanoporetech/rerio) and set MODEL_PATH manually." >&2
+  exit 1
+fi
+echo "Using Clair3 model: $MODEL_PATH"
 
 run_clair3.sh \
   --bam_fn=$BAM \
