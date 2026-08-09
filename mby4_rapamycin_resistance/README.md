@@ -77,16 +77,15 @@ Adjust the `#SBATCH --output` and in-script paths if the actual run uses a diffe
    `mapping/`). Check the Plasmidsaurus delivery metadata / FASTQ header / run report for
    the basecaller and model (e.g. `dna_r10.4.1_e8.2_400bps_sup`) before choosing. Record the
    choice and reasoning in `NOTES.md` before running `assembly/run_flye.sbatch` or
-   `mapping/*.sbatch`.
-2. **W303 reference accession** — see `reference/PROVENANCE.md`. Two candidates were
-   identified by literature/NCBI search from this session (which has no verified access to
-   yeastgenome.org or ncbi.nlm.nih.gov — both are blocked by this session's network egress
-   proxy). **Neither candidate has been independently confirmed.** This must be resolved on
-   Quartz (`datasets summary genome accession <ACC>`) before `mapping/` or `asm_vs_asm/` are
-   run against W303.
-3. **TOR-pathway gene coordinates** (`results/tor_pathway_genes.tsv`) — populated from web
-   search only, not a direct SGD fetch (same network restriction as above). Treat as a
-   starting point to re-verify against SGD/NCBI directly on Quartz, not as ground truth.
+   `mapping/*.sbatch`. **Still open.**
+2. ~~W303 reference accession~~ — **RESOLVED** on Quartz 2026-08-09: GCA_965282845.1, see
+   `reference/PROVENANCE.md` for the full comparison and reasoning. Reference downloaded,
+   staged at `reference/W303.fna`, headers renamed to `chrI`-`chrXVI`.
+3. ~~TOR-pathway gene coordinates~~ — **RESOLVED** on Quartz 2026-08-09: all six genes'
+   coordinates confirmed from the S288c GFF3 (GCF_000146045.2, the actual mapping reference,
+   also downloaded and staged at `reference/S288c_R64.fna`), plus TOR1's FRB domain and
+   S1972 resistance hotspot confirmed from UniProt P35169. See
+   `results/tor_pathway_genes.tsv`.
 
 ## How this scaffold was built
 
