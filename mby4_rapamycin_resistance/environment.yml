@@ -1,0 +1,32 @@
+# MBY4 rapamycin resistance pipeline — tool versions (main environment)
+#
+# Split into two environments (2026-08-09) after flagging the risk in the original draft:
+# Clair3's pinned pytorch/tensorflow stack is a common source of solver conflicts with
+# everything else here, so it now lives in its own env — see environment_clair3.yml.
+# Everything below (QC, assembly/polishing, mapping, SV calling, asm-vs-asm comparison,
+# annotation) has no known mutual conflicts and stays in one shared env.
+#
+# STATUS: versions below are proposed, not yet confirmed against a real install transaction
+# log or `--version` banner (contrast ../yh156_assembly_and_synteny/environment.yml, which
+# documents confirmed-vs-assumed versions from its actual run). `datasets` and `seqkit` were
+# already installed into this env on Quartz on 2026-08-09 (see NOTES.md) — capture their
+# real versions and rewrite this file once the rest of the env is built.
+
+name: mby4_rapamycin
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - nanoplot          # read QC — version unconfirmed
+  - flye              # de novo assembly — version unconfirmed; --nano-hq confirmed as the correct mode for MBY4's basecaller, see NOTES.md
+  - medaka            # ONT consensus polishing — version unconfirmed; model r1041_e82_400bps_sup_v430 expected but not yet confirmed against `medaka tools list_models`, see assembly/medaka_polish.sbatch
+  - minimap2          # mapping + asm-vs-asm alignment — version unconfirmed; -ax lr:hq confirmed as the correct preset for MBY4's basecaller, see NOTES.md
+  - samtools          # BAM sort/index — version unconfirmed
+  - sniffles=2        # structural variant calling — must be Sniffles2, not Sniffles1; version unconfirmed
+  - mummer4           # nucmer/dnadiff for asm-vs-asm cross-check — version unconfirmed
+  - bcftools          # VCF isec/filtering — version unconfirmed
+  - snpeff            # functional annotation — version unconfirmed; yeast (R64-1-1.99 or current) database must be downloaded separately, confirm exact database name on Quartz
+  - seqkit            # fasta/fastq stats utility — installed 2026-08-09
+  - r-base
+  - r-pafr            # PAF dot plots in R
+  - datasets          # NCBI datasets CLI, used to resolve reference/PROVENANCE.md — installed 2026-08-09
