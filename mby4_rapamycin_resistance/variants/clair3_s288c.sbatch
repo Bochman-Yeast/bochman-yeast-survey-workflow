@@ -16,9 +16,13 @@
 # running with a wrong/default model. run_clair3.sh's exact CLI flags (esp. --platform,
 # --model_path) should also be checked against the installed Clair3 version's own --help
 # before running; do not assume flag names/defaults.
+#
+# Uses its OWN conda env (mby4_rapamycin_clair3, see ../environment_clair3.yml), separate
+# from the main mby4_rapamycin env used by every other script in this package -- Clair3's
+# pinned pytorch/tensorflow stack is a common source of solver conflicts if bundled together.
 
 source ~/.bashrc
-conda activate mby4_rapamycin
+conda activate mby4_rapamycin_clair3
 
 run_clair3.sh --version 2>&1 | head -5 || true
 

@@ -62,6 +62,17 @@ All six genes' coordinates confirmed from the S288c GFF3 by locus_tag (FPR1, TOR
 KOG1, LST8, TCO89). TOR1's FRB domain (chrX:564738-565886) and the S1972 resistance hotspot
 (chrX:565329-565331) additionally confirmed from UniProt P35169.
 
+### Environment split (this session)
+`environment.yml` split into two files: the original name (`mby4_rapamycin`) keeps
+everything except Clair3, and a new `environment_clair3.yml` (env name
+`mby4_rapamycin_clair3`) holds Clair3 alone, isolating its pinned pytorch/tensorflow stack
+from the rest of the toolchain's solve. `variants/clair3_*.sbatch` updated to activate the
+new env name. Not yet built/tested on Quartz — do that before running `variants/`.
+Also note: this Quartz install's conda has a broken `libmamba` solver plugin
+(`GLIBCXX_3.4.31 not found`) — `conda create`/`env create` need `--solver classic` (or
+`conda config --set solver classic` set globally) to work around it. Cosmetic error only;
+doesn't block the classic solver from completing.
+
 ## [unfilled] Step 1 — QC (raw/)
 - NanoPlot version:
 - Command:

@@ -13,9 +13,12 @@
 # GCA_965282845.1, downloaded and staged). Basecaller confirmed from read headers
 # (2026-08-09): dna_r10.4.1_e8.2_400bps_sup@v4.3.0 (see ../NOTES.md). See
 # clair3_s288c.sbatch's header comment re: MODEL_PATH verification.
+#
+# Uses its OWN conda env (mby4_rapamycin_clair3, see ../environment_clair3.yml) -- see
+# clair3_s288c.sbatch's header comment for why.
 
 source ~/.bashrc
-conda activate mby4_rapamycin
+conda activate mby4_rapamycin_clair3
 
 run_clair3.sh --version 2>&1 | head -5 || true
 

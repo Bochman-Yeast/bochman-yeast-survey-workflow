@@ -1,0 +1,25 @@
+# MBY4 rapamycin resistance pipeline — Clair3 environment (separate from environment.yml)
+#
+# Isolated because Clair3's pinned pytorch/tensorflow stack is a common source of conda
+# solver conflicts when bundled with the rest of the pipeline's tools (nanoplot, flye,
+# medaka, minimap2, etc. — see environment.yml). Build this as its own env:
+#
+#   conda env create -f environment_clair3.yml --solver classic
+#   # (use --solver classic if this Quartz install's libmamba plugin is broken -- see NOTES.md)
+#
+# variants/clair3_s288c.sbatch and variants/clair3_w303.sbatch both activate this env by
+# name (mby4_rapamycin_clair3), not the main mby4_rapamycin env.
+#
+# STATUS: version below is proposed, not yet confirmed against a real install/--version
+# output. Requires a model bundle matching MBY4's basecaller
+# (dna_r10.4.1_e8.2_400bps_sup@v4.3.0, see NOTES.md) — expected model name
+# r1041_e82_400bps_sup_v430, NOT yet confirmed present in this install. clair3_*.sbatch
+# auto-discovers the model path at runtime and fails loudly if none is found rather than
+# silently defaulting.
+
+name: mby4_rapamycin_clair3
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - clair3            # ONT small-variant calling — version unconfirmed; requires a model bundle matching the basecaller (rerio/clair3 models), not necessarily the default that ships with the package

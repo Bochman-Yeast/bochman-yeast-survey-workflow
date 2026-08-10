@@ -39,7 +39,8 @@ genuinely private to MBY4 (see `results/` filtering-stage counts, once populated
 | `sv/` | Sniffles2 structural-variant calls, S288c and W303, separately |
 | `asm_vs_asm/` | Assembly-vs-assembly alignment (minimap2 asm5 / MUMmer dnadiff) for CNV/aneuploidy screening and SV cross-check |
 | `results/` | Intersected MBY4-specific variant sets, TOR-pathway targeted lookup, SnpEff annotation, `SUMMARY.md` |
-| `environment.yml` | Tool versions — **all versions in this file are proposed/typical, not confirmed on Quartz. Confirm every version before running (see file header).** |
+| `environment.yml` | Main conda env — QC/assembly/mapping/SV/annotation tools. **Versions proposed/typical, not confirmed on Quartz. Confirm before running (see file header).** |
+| `environment_clair3.yml` | Separate conda env for Clair3 only — split out because its pinned pytorch/tensorflow stack tends to conflict with the main env's solve. |
 | `NOTES.md` | Running log template — commands, tool versions, and decision points, to be filled in *during* the actual run, not reconstructed after |
 
 ## Sequencing data
